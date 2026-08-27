@@ -1,69 +1,168 @@
-import Image from "next/image";
+import type { Metadata } from "next";
+import { Section } from "@/components/ui/Section";
+import { Card } from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
+import { Link } from "@/components/ui/Link";
+import { ContactCTA } from "@/components/ContactCTA";
+import { site } from "@/content/site";
+import { services, offers, portfolio, routes } from "@/lib/links";
+import { getAllPosts } from "@/lib/blog";
 
-export default function Home() {
+export const metadata: Metadata = {
+  description: site.description,
+};
+
+const faqs = [
+  {
+    q: "How do we get started?",
+    a: "Book a call and we'll scope the work, agree a plan, and get moving — usually within a week.",
+  },
+  {
+    q: "Do you work with our existing team?",
+    a: "Yes. We slot in alongside in-house teams or run the whole engagement end to end.",
+  },
+  {
+    q: "What does it cost?",
+    a: "Most work is fixed-scope or a monthly retainer. Reach out and we'll give you a clear number.",
+  },
+];
+
+export default function HomePage() {
+  const posts = getAllPosts().slice(0, 3);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      {/* Hero */}
+      <Section aria-label="Introduction">
+        <p className="text-sm font-medium uppercase tracking-wide text-muted">
+          {site.shortDescription}
+        </p>
+        <h1 className="mt-4 max-w-3xl text-title font-semibold text-fg sm:text-display">
+          Design, web, and growth under one calm, monochrome roof.
+        </h1>
+        <p className="mt-6 max-w-2xl text-lead text-muted">{site.description}</p>
+        <div className="mt-8 flex flex-wrap gap-3">
+          <Button href={site.cta.href}>{site.cta.label}</Button>
+          <Button href={routes.work} variant="secondary">
+            View our work
+          </Button>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </Section>
+
+      {/* Services */}
+      <Section aria-label="Services" className="border-t border-border">
+        <div className="flex items-end justify-between gap-4">
+          <h2 className="text-title font-semibold text-fg">What we do</h2>
+          <Link href={routes.services}>All services →</Link>
         </div>
-      </main>
-    </div>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          {services.map((service) => (
+            <Card
+              key={service.slug}
+              href={routes.service(service.slug)}
+              title={service.title}
+            >
+              {service.excerpt}
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      {/* Offers */}
+      <Section aria-label="Offers" className="border-t border-border">
+        <div className="flex items-end justify-between gap-4">
+          <h2 className="text-title font-semibold text-fg">Ways to work with us</h2>
+          <Link href={routes.offers}>All offers →</Link>
+        </div>
+        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+          {offers.map((offer) => (
+            <Card
+              key={offer.slug}
+              href={routes.offer(offer.slug)}
+              title={offer.title}
+            >
+              {offer.summary}
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      {/* Portfolio */}
+      <Section aria-label="Selected work" className="border-t border-border">
+        <div className="flex items-end justify-between gap-4">
+          <h2 className="text-title font-semibold text-fg">Selected work</h2>
+          <Link href={routes.work}>All work →</Link>
+        </div>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          {portfolio.map((item) => (
+            <Card
+              key={item.slug}
+              href={routes.workItem(item.slug)}
+              title={item.title}
+            >
+              {item.summary}
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      {/* Process */}
+      <Section aria-label="Process" className="border-t border-border">
+        <h2 className="text-title font-semibold text-fg">A simple, repeatable process</h2>
+        <p className="mt-4 max-w-2xl text-muted">
+          Discover, design, build, grow — a clear path from first call to
+          measurable results, with no surprises along the way.
+        </p>
+        <div className="mt-6">
+          <Button href={routes.process} variant="secondary">
+            See how we work
+          </Button>
+        </div>
+      </Section>
+
+      {/* Insights */}
+      <Section aria-label="Insights" className="border-t border-border">
+        <div className="flex items-end justify-between gap-4">
+          <h2 className="text-title font-semibold text-fg">Insights</h2>
+          <Link href={routes.blog}>All insights →</Link>
+        </div>
+        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+          {posts.map((post) => (
+            <Card
+              key={post.slug}
+              href={routes.post(post.slug)}
+              eyebrow={new Date(post.date).toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+              })}
+              title={post.title}
+            >
+              {post.excerpt}
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      {/* FAQ (section only — links to Contact) */}
+      <Section aria-label="Frequently asked questions" className="border-t border-border">
+        <h2 className="text-title font-semibold text-fg">Frequently asked</h2>
+        <dl className="mt-8 divide-y divide-border border-y border-border">
+          {faqs.map((faq) => (
+            <div key={faq.q} className="py-5">
+              <dt className="font-medium text-fg">{faq.q}</dt>
+              <dd className="mt-2 text-muted">{faq.a}</dd>
+            </div>
+          ))}
+        </dl>
+        <p className="mt-6 text-muted">
+          Still have a question?{" "}
+          <Link href={routes.contact}>Get in touch</Link> and we&apos;ll answer it.
+        </p>
+      </Section>
+
+      {/* Final CTA */}
+      <ContactCTA />
+    </>
   );
 }
