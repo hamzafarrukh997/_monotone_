@@ -1,13 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { Container } from "@/components/ui/Container";
-import { Section } from "@/components/ui/Section";
-import { Card } from "@/components/ui/Card";
-import { Button } from "@/components/ui/Button";
-import { Link } from "@/components/ui/Link";
-import { ContactCTA } from "@/components/ContactCTA";
-import { mdxComponents } from "@/components/mdx";
 import { getAllPostSlugs, getPostBySlug, getRelatedPosts } from "@/lib/blog";
 import { getServicesForSlugs, routes } from "@/lib/links";
 
@@ -35,14 +28,6 @@ export async function generateMetadata({
   };
 }
 
-function formatDate(date: string) {
-  return new Date(date).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-}
-
 export default async function BlogPostPage({
   params,
 }: PageProps<"/blog/[slug]">) {
@@ -55,79 +40,49 @@ export default async function BlogPostPage({
   const relatedServices = getServicesForSlugs(meta.relatedServices);
 
   return (
-    <>
-      <Container as="article" className="py-section">
-        <header className="max-w-3xl">
-          <p className="text-sm text-muted">{formatDate(meta.date)}</p>
-          <h1 className="mt-3 text-title font-semibold text-fg sm:text-display">
-            {meta.title}
-          </h1>
-          <p className="mt-4 text-lead text-muted">{meta.excerpt}</p>
-          {meta.tags.length > 0 ? (
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {meta.tags.map((tag) => (
-                <li
-                  key={tag}
-                  className="rounded-sm border border-border px-2 py-1 text-xs text-muted"
-                >
-                  {tag}
-                </li>
-              ))}
-            </ul>
-          ) : null}
-        </header>
+    <article>
+      <h1>{meta.title}</h1>
+      <p>
+        <small>{meta.date}</small>
+      </p>
+      <p>{meta.excerpt}</p>
+      {meta.tags.length > 0 ? <p>Tags: {meta.tags.join(", ")}</p> : null}
 
-        <div className="mt-10 max-w-3xl">
-          <MDXRemote source={content} components={mdxComponents} />
-        </div>
+      {/* MDX body renders as default, unstyled HTML elements. */}
+      <MDXRemote source={content} />
 
-        {/* Related service categories */}
-        {relatedServices.length > 0 ? (
-          <div className="mt-12 max-w-3xl">
-            <h2 className="text-heading font-semibold text-fg">Related services</h2>
-            <div className="mt-4 grid gap-4 sm:grid-cols-2">
-              {relatedServices.map((service) => (
-                <Card
-                  key={service.slug}
-                  href={routes.service(service.slug)}
-                  title={service.title}
-                >
-                  {service.excerpt}
-                </Card>
-              ))}
-            </div>
-          </div>
-        ) : null}
-      </Container>
+      {/* Related service categories */}
+      {relatedServices.length > 0 ? (
+        <section aria-label="Related services">
+          <h2>Related services</h2>
+          <ul>
+            {relatedServices.map((service) => (
+              <li key={service.slug}>
+                <a href={routes.service(service.slug)}>{service.title}</a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       {/* Related posts */}
       {relatedPosts.length > 0 ? (
-        <Section aria-label="Related posts" className="border-t border-border">
-          <div className="flex items-end justify-between gap-4">
-            <h2 className="text-title font-semibold text-fg">Keep reading</h2>
-            <Link href={routes.blog}>All insights →</Link>
-          </div>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        <section aria-label="Related posts">
+          <h2>Keep reading</h2>
+          <ul>
             {relatedPosts.map((related) => (
-              <Card
-                key={related.slug}
-                href={routes.post(related.slug)}
-                eyebrow={formatDate(related.date)}
-                title={related.title}
-              >
-                {related.excerpt}
-              </Card>
+              <li key={related.slug}>
+                <a href={routes.post(related.slug)}>{related.title}</a>
+              </li>
             ))}
-          </div>
-          <div className="mt-8">
-            <Button href={routes.blog} variant="secondary">
-              Back to all insights
-            </Button>
-          </div>
-        </Section>
+          </ul>
+          <a href={routes.blog}>All insights</a>
+        </section>
       ) : null}
 
-      <ContactCTA />
-    </>
+      <section aria-label="Contact call to action">
+        <a href={routes.contact}>Book a call</a>
+      </section>
+    </article>
   );
 }

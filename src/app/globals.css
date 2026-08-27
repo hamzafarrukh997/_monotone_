@@ -1,94 +1,45 @@
 @import "tailwindcss";
 
 /* ==========================================================================
-   DESIGN TOKENS (placeholders — swap freely)
-   --------------------------------------------------------------------------
-   Raw palette values live on :root (and the dark override below). The @theme
-   block maps them to Tailwind's token namespaces so utilities like `bg-surface`
-   `text-muted` `rounded-lg` `shadow-card` `text-display` are generated.
-
-   This is intentionally a neutral, monochrome placeholder system. Change the
-   values here and the whole site follows — never hardcode colors in components.
+   DESIGN TOKENS (swap-friendly placeholders)
+   Values sourced from the Figma hero frame (node 213-53). Change here and the
+   whole site follows — never hardcode these in components.
    ========================================================================== */
 
-:root {
-  /* Neutral / monochrome palette */
-  --tone-bg: #ffffff;
-  --tone-surface: #ffffff;
-  --tone-surface-muted: #f5f5f5;
-  --tone-fg: #111111;
-  --tone-muted: #5c5c5c;
-  --tone-border: #e5e5e5;
-  --tone-accent: #111111;
-  --tone-accent-foreground: #ffffff;
-  --tone-ring: #111111;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --tone-bg: #0a0a0a;
-    --tone-surface: #121212;
-    --tone-surface-muted: #191919;
-    --tone-fg: #f5f5f5;
-    --tone-muted: #a3a3a3;
-    --tone-border: #2a2a2a;
-    --tone-accent: #f5f5f5;
-    --tone-accent-foreground: #0a0a0a;
-    --tone-ring: #f5f5f5;
-  }
-}
-
-@theme inline {
+@theme {
   /* Colors */
-  --color-bg: var(--tone-bg);
-  --color-surface: var(--tone-surface);
-  --color-surface-muted: var(--tone-surface-muted);
-  --color-fg: var(--tone-fg);
-  --color-muted: var(--tone-muted);
-  --color-border: var(--tone-border);
-  --color-accent: var(--tone-accent);
-  --color-accent-foreground: var(--tone-accent-foreground);
-  --color-ring: var(--tone-ring);
+  --color-bg: #1e1e1e; /* page ink */
+  --color-fg: #ffffff; /* text on ink */
+  --color-accent: #ff5a1f; /* brand orange */
+  --color-accent-foreground: #ffffff; /* text on orange */
+  --color-toggle-a: #d9d9d9; /* decorative headline toggle (light) */
+  --color-toggle-b: #b0b0b0; /* decorative headline toggle (dark) */
 
-  /* Typography */
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  /* Typography — families wired via next/font in layout.tsx */
+  --font-display: var(--font-parkinsans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
 
-  --text-display: 3.5rem;
-  --text-display--line-height: 1.05;
-  --text-display--letter-spacing: -0.02em;
-  --text-title: 2.25rem;
-  --text-title--line-height: 1.15;
-  --text-title--letter-spacing: -0.01em;
-  --text-heading: 1.5rem;
-  --text-heading--line-height: 1.25;
-  --text-lead: 1.25rem;
-  --text-lead--line-height: 1.6;
+  --text-body: 0.875rem; /* 14px */
+  --text-body--line-height: 1.5;
+
+  /* Hero headline: 80px on desktop, fluid down to 44px on mobile */
+  --text-hero: clamp(2.75rem, 7vw, 5rem);
+  --text-hero--line-height: 0.98;
+  --text-hero--letter-spacing: -0.01em;
+
+  /* Background watermark: 220px on desktop, fluid down on small screens */
+  --text-watermark: clamp(4.5rem, 16vw, 13.75rem);
+  --text-watermark--line-height: 0.9;
 
   /* Radii */
-  --radius-sm: 0.375rem;
-  --radius-md: 0.625rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.5rem;
-
-  /* Shadows */
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.06);
-  --shadow-focus: 0 0 0 3px var(--tone-ring);
+  --radius-pill: 9999px;
 
   /* Layout */
-  --container-page: 72rem; /* -> max-w-page */
-  --spacing-section: 5rem; /* -> py-section, gap-section, etc. */
+  --container-page: 86.625rem; /* 1386px frame width */
 }
 
-/* Base element defaults ---------------------------------------------------- */
-body {
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font-family: var(--font-sans);
-}
-
-/* Visible, consistent focus ring for keyboard users (a11y baseline). */
+/* Visible focus ring for keyboard users (a11y baseline). */
 :focus-visible {
-  outline: 2px solid var(--color-ring);
+  outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }

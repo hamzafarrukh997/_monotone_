@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { LegalPage } from "@/components/LegalPage";
+import { routes } from "@/lib/links";
 
 export const metadata: Metadata = {
   title: "Cookie Policy",
@@ -8,24 +8,23 @@ export const metadata: Metadata = {
 
 export default function CookiePolicyPage() {
   return (
-    <LegalPage
-      title="Cookie Policy"
-      intro="This placeholder explains how we use cookies and similar technologies. Replace with reviewed legal text before launch."
-      updated="28 August 2026"
-      sections={[
-        {
-          heading: "What cookies are",
-          body: "Placeholder: a short explanation of cookies and similar technologies.",
-        },
-        {
-          heading: "How we use cookies",
-          body: "Placeholder: the categories of cookies used and their purposes.",
-        },
-        {
-          heading: "Managing cookies",
-          body: "Placeholder: how visitors can control or disable cookies.",
-        },
-      ]}
-    />
+    <>
+      <h1>Cookie Policy</h1>
+      <p>Last updated: 28 August 2026</p>
+      <p>Placeholder. Replace with reviewed legal text before launch.</p>
+
+      <h2>What cookies are</h2>
+      <p>Placeholder.</p>
+
+      <h2>How we use cookies</h2>
+      <p>Placeholder.</p>
+
+      <h2>Managing cookies</h2>
+      <p>Placeholder.</p>
+
+      <p>
+        Questions? <a href={routes.contact}>Contact us</a>.
+      </p>
+    </>
   );
 }

@@ -1,11 +1,8 @@
 import type { ReactNode } from "react";
-import { cn } from "@/lib/cn";
 import { Container } from "./Container";
 
 type SectionProps = {
-  /** Optional id for in-page anchors (e.g. FAQ, services). */
   id?: string;
-  /** Accessible label for the section landmark. */
   "aria-label"?: string;
   /** Render without the inner Container (for full-bleed sections). */
   bleed?: boolean;
@@ -15,8 +12,8 @@ type SectionProps = {
 };
 
 /**
- * Vertical rhythm wrapper. Renders a semantic <section> landmark with
- * token-driven vertical padding and an optional centered Container.
+ * Semantic <section> landmark. By default wraps children in a centered
+ * Container; pass `bleed` for full-bleed sections that manage their own layout.
  */
 export function Section({
   id,
@@ -27,7 +24,7 @@ export function Section({
   ...rest
 }: SectionProps) {
   return (
-    <section id={id} className={cn("py-section", className)} {...rest}>
+    <section id={id} className={className} {...rest}>
       {bleed ? children : <Container className={containerClassName}>{children}</Container>}
     </section>
   );

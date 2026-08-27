@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/ui/PageHeader";
-import { Section } from "@/components/ui/Section";
-import { Card } from "@/components/ui/Card";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description:
-    "Get in touch with Monotone by email or WhatsApp, or book a call to talk through your project.",
+  description: "Get in touch with Monotone by email or WhatsApp.",
 };
 
 export default function ContactPage() {
@@ -16,33 +12,21 @@ export default function ContactPage() {
 
   return (
     <>
-      <PageHeader
-        eyebrow="Contact"
-        title="Let's talk about your project"
-        lead="Tell us what you're working on. We'll get back to you quickly with next steps."
-      />
-
-      <Section aria-label="Contact details" className="pt-0">
-        <div className="grid gap-4 sm:grid-cols-2">
-          <Card title="Email">
-            <a className="hover:text-fg" href={`mailto:${contact.email}`}>
-              {contact.email}
-            </a>
-          </Card>
-          <Card title="WhatsApp">
-            <a
-              className="hover:text-fg"
-              href={whatsappHref}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {contact.whatsapp}
-            </a>
-          </Card>
-          <Card title="Location">{contact.location}</Card>
-          <Card title="Availability">{contact.availability}</Card>
-        </div>
-      </Section>
+      <h1>Contact</h1>
+      <dl>
+        <dt>Email</dt>
+        <dd>
+          <a href={`mailto:${contact.email}`}>{contact.email}</a>
+        </dd>
+        <dt>WhatsApp</dt>
+        <dd>
+          <a href={whatsappHref}>{contact.whatsapp}</a>
+        </dd>
+        <dt>Location</dt>
+        <dd>{contact.location}</dd>
+        <dt>Availability</dt>
+        <dd>{contact.availability}</dd>
+      </dl>
     </>
   );
 }

@@ -5,21 +5,20 @@ import { cn } from "@/lib/cn";
 type NextLinkHref = ComponentProps<typeof NextLink>["href"];
 
 type Variant = "primary" | "secondary" | "ghost";
-type Size = "sm" | "md" | "lg";
+type Size = "md" | "lg";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors focus-visible:outline-none disabled:opacity-50 disabled:pointer-events-none";
+  "inline-flex items-center justify-center gap-2 rounded-pill font-sans font-semibold transition-colors focus-visible:outline-none disabled:opacity-50 disabled:pointer-events-none";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-accent text-accent-foreground hover:opacity-90",
-  secondary: "border border-border bg-surface text-fg hover:bg-surface-muted",
-  ghost: "text-fg hover:bg-surface-muted",
+  primary: "bg-accent text-accent-foreground hover:bg-accent/90",
+  secondary: "border border-accent text-fg hover:bg-accent/15",
+  ghost: "text-fg hover:bg-fg/10",
 };
 
 const sizes: Record<Size, string> = {
-  sm: "h-9 px-3 text-sm",
-  md: "h-11 px-5 text-sm",
-  lg: "h-12 px-6 text-base",
+  md: "h-10 px-5 text-sm",
+  lg: "h-12 px-7 text-sm",
 };
 
 type CommonProps = {
@@ -43,13 +42,11 @@ type ButtonAsLink = CommonProps & {
 export type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 /**
- * Button / CTA primitive. Renders:
- *  - a real <button> when no `href` is given,
- *  - a next/link for internal paths,
- *  - a plain anchor for external / protocol links.
+ * Button / CTA primitive. Renders a real <button>, a next/link for internal
+ * paths, or a plain anchor for external / protocol links.
  */
 export function Button(props: ButtonProps) {
-  const { variant = "primary", size = "md", className, children } = props;
+  const { variant = "primary", size = "lg", className, children } = props;
   const classes = cn(base, variants[variant], sizes[size], className);
 
   if ("href" in props && props.href !== undefined) {

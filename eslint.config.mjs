@@ -17,6 +17,10 @@ const eslintConfig = defineConfig([
           ignoreRestSiblings: true,
         },
       ],
+      // Phase 1 is intentionally plain, unstyled HTML with no component layer,
+      // so internal links use plain <a>. Re-enable this when we adopt next/link
+      // (behind a Link primitive) in the design phase.
+      "@next/next/no-html-link-for-pages": "off",
     },
   },
   // Override default ignores of eslint-config-next.

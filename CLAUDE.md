@@ -4,11 +4,11 @@
 
 A digital agency website. **Next.js (App Router) + TypeScript + Tailwind v4 + MDX**, targeting Vercel.
 
-> **Phase 1 = scaffold.** Structure, content layer, routing, and cross-links only. Visual design is deliberately neutral and comes later, section by section. Do not invest in visual fidelity yet.
+> **Phase 1 = structure only.** Routing, content layer, and cross-links are wired up. **Pages are intentionally blank — plain, unstyled semantic HTML with no component layer and no design tokens yet.** Visual design (components, tokens, styling, motion) is added later, section by section. Do not add styling ahead of that.
 
 ## Golden rule: content lives in the content layer
 
-**Never hardcode nav labels, service names, hrefs, or structured content in pages or components.** Everything comes from `content/` and is consumed through the helpers in `lib/`. A new service, offer, case study, or post should appear across the site (nav, footer, sitemap, cross-links) by editing data only.
+**Never hardcode nav labels, service names, hrefs, or structured content in pages.** Everything comes from `content/` and is consumed through the helpers in `lib/`. A new service, offer, case study, or post should appear across the site (nav, footer, sitemap, cross-links) by editing data only. The header nav and footer in `src/app/layout.tsx` render entirely from `content/site.ts`.
 
 ## Folder structure
 
@@ -19,39 +19,39 @@ content/              # single source of truth (typed .ts + MDX)
   offers.ts           # offers
   portfolio.ts        # case studies
   blog/*.mdx          # posts with frontmatter
-lib/                  # all shared logic (imported via @/lib/*)
+lib/                  # all shared logic (imported via @/lib/*), at repo root
   blog.ts             # MDX reader (frontmatter + related posts) — server-only
   links.ts            # routes helper + cross-link logic
-  cn.ts               # className joiner — client-safe
 src/
-  app/                # App Router routes, sitemap.ts, robots.ts
-  components/
-    ui/               # primitives: Container, Section, Card, Button, Link, PageHeader
-    layout/           # Header, Footer (render entirely from content/site.ts)
-    *.tsx             # composed blocks (ContactCTA, LegalPage, mdx)
+  app/                # App Router routes, layout (inline header/footer),
+                      # sitemap.ts, robots.ts, not-found.tsx, globals.css
 ```
-Note: `lib/` lives at the repo root (not under `src/`). Keep server-only
-modules (anything importing `node:fs`) out of Client Components.
+
+Styling has begun (Phase 2). `src/components/ui/` holds the primitives
+(`Container`, `Section`, `Button`, `Link`) and `src/components/sections/` holds
+designed page sections (e.g. `Hero`). Pages not yet designed remain flat plain
+HTML. Keep server-only modules (anything importing `node:fs`, e.g. `lib/blog.ts`)
+out of Client Components.
 
 ## Import aliases
 
 - `@/content/*` → `content/*`  (root)
-- `@/lib/*` → `lib/*`  (root, server data logic)
-- `@/*` → `src/*`  (app, components, client helpers)
+- `@/lib/*` → `lib/*`  (root, shared logic)
+- `@/*` → `src/*`
 
 Longest-prefix match wins, so all three live under one `@` namespace.
 
-## Tailwind-first
+## Styling policy
 
-- **Use Tailwind utilities for everything.** Drop to plain CSS only when Tailwind genuinely can't express it (e.g. the focus-visible base rule in `globals.css`).
-- **Design tokens** are defined once in the `@theme` block in `src/app/globals.css` (colors, typography, radii, shadows, layout). They are neutral, monochrome placeholders — swap the values there and the whole site follows. Utilities generated include `bg-surface`, `text-muted`, `border-border`, `rounded-lg`, `shadow-card`, `text-display/title/heading/lead`, `max-w-page`, `py-section`.
-- **Never hardcode colors** (no `#hex`, no `bg-zinc-800`) in components — use token utilities.
+- **Tailwind-first.** Design tokens live once in the `@theme` block in `globals.css` (colors, typography, radii, layout), sourced from Figma. Reference them via utilities (`bg-bg`, `text-fg`, `bg-accent`, `text-hero`, `font-display`, `rounded-pill`, `max-w-page`). **Never hardcode colors** (no raw hex, no `bg-zinc-800`) in markup — if the design needs a value no token covers, add a token. Drop to plain CSS only when Tailwind genuinely can't express something.
+- Fonts are wired via `next/font` in `layout.tsx` and exposed as `--font-display` (Parkinsans) and `--font-sans` (Plus Jakarta Sans).
+- Design is built **section by section**; only the sections that have been designed carry styling. The header/footer are still their plain placeholder state until their own phase.
 
 ## Naming
 
-- Components: `PascalCase.tsx`, one primary export named for the file.
 - Data/lib modules: `camelCase.ts`; content collections exported as plural arrays (`services`, `offers`) with `getX(slug)` lookups and `xSlugs` helpers.
 - Routes: kebab-case segments (`/privacy-policy`), dynamic segments `[slug]` / `[category]`.
+- Future components: `PascalCase.tsx`, one primary export named for the file.
 
 ## Routing
 
@@ -61,37 +61,32 @@ Longest-prefix match wins, so all three live under one `@` namespace.
 
 ## Cross-links (no dead ends)
 
-All internal relationships are encoded **once** in `lib/links.ts` and driven by the data:
+All internal relationships are encoded **once** in `lib/links.ts` and driven by the data. Use `routes.*` for hrefs and the `getX…` helpers for related items — don't rebuild these relationships in pages:
 
-- Category → sub-services (on-page), related portfolio, Offers, Contact CTA.
-- Case study → related service, the other case studies, index, Contact CTA.
-- Offer → the other offers, index, Contact CTA.
-- Post → related posts, related service, index, Contact CTA.
-- Process → Offers, Portfolio, Contact CTA.
+- Category → sub-services (on-page), related portfolio, Offers, Contact.
+- Case study → related service, the other case studies, index, Contact.
+- Offer → the other offers, index, Contact.
+- Post → related posts, related service, index, Contact.
+- Process → Offers, Portfolio, Contact.
 
-Use `routes.*` for hrefs and the `getX…` helpers for related items — don't rebuild these relationships in pages. `ContactCTA` closes every detail page.
+Every detail page ends with a Contact section so nothing is a dead end.
 
 ## Sub-services are intentionally on-page (routes deferred)
 
-Sub-services render as **cards/text on their category page** and carry a `slug` reserved for a future `/services/[category]/[subService]` route. **Those pages are authored in a later phase.** Until then: **no links or CTAs point to sub-service routes.** Do not create the sub-service route files or link to them yet.
-
-## Animation policy
-
-- `framer-motion` is installed but **nothing is animated yet.** Add motion sparingly and intentionally in a later phase — not as decoration.
+Sub-services render as **on-page content on their category page** and carry a `slug` reserved for a future `/services/[category]/[subService]` route. **Those pages are authored in a later phase.** Until then: **no links or CTAs point to sub-service routes.** Do not create the sub-service route files or link to them yet.
 
 ## Blog / MDX
 
 - Posts are `.mdx` in `content/blog/` with frontmatter: `title, slug, date, excerpt, cover, tags, relatedServices`.
 - Read exclusively through `lib/blog.ts` (never touch the filesystem in a page).
-- Rendered with `next-mdx-remote/rsc`; element styling comes from `src/components/mdx.tsx`.
+- Rendered with `next-mdx-remote/rsc`. No element-styling map yet — MDX renders default HTML. A styled component map comes with the design phase.
 
-## Accessibility & SEO baseline
+## Animation policy
 
-- Semantic landmarks (`header`/`nav`/`main`/`footer`/`section` with labels), a skip link, visible `:focus-visible` ring, alt text on images.
-- Generated `sitemap.xml` and `robots.txt` derive from the content layer. Keep them data-driven.
+- `framer-motion` is installed but **nothing is animated yet.** Add motion sparingly and intentionally in a later phase — not as decoration.
 
 ## Before launch (later phases)
 
 - Replace placeholder contact details in `content/site.ts` and the real domain in `site.url`.
 - Replace placeholder legal copy.
-- Add a real OG image.
+- Add design tokens, components, styling, and a real OG image.
