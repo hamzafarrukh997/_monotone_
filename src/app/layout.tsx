@@ -1,18 +1,28 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Parkinsans } from "next/font/google";
+import localFont from "next/font/local";
+import "lenis/dist/lenis.css";
 import "./globals.css";
 import { site } from "@/content/site";
+import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
+import { SmoothScroll } from "@/components/layout/SmoothScroll";
+import { CustomCursor } from "@/components/layout/CustomCursor";
+import { PageTransition } from "@/components/layout/PageTransition";
 
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
+const jakarta = localFont({
+  src: "./fonts/PlusJakartaSans-latin.woff2",
   variable: "--font-jakarta",
   display: "swap",
+  weight: "200 800",
+  adjustFontFallback: false,
 });
 
-const parkinsans = Parkinsans({
-  subsets: ["latin"],
+const parkinsans = localFont({
+  src: "./fonts/Parkinsans-latin.woff2",
   variable: "--font-parkinsans",
   display: "swap",
+  weight: "300 800",
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
@@ -39,65 +49,27 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
-  const { contact } = site;
-  const whatsappHref = `https://wa.me/${contact.whatsapp.replace(/[^\d]/g, "")}`;
-
   return (
     <html lang="en" className={`${jakarta.variable} ${parkinsans.variable}`}>
-      <body>
-        {/* Header — rendered entirely from content/site.ts. Unstyled. */}
-        <header>
-          <nav aria-label="Primary">
-            <a href="/">{site.name}</a>
-            <ul>
-              {site.nav.map((item) => (
-                <li key={item.href}>
-                  <a href={item.href}>{item.label}</a>
-                  {item.children ? (
-                    <ul>
-                      {item.children.map((child) => (
-                        <li key={child.href}>
-                          <a href={child.href}>{child.label}</a>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : null}
-                </li>
-              ))}
-              <li>
-                <a href={site.cta.href}>{site.cta.label}</a>
-              </li>
-            </ul>
-          </nav>
-        </header>
+      <body className="relative bg-bg text-fg">
+        <SmoothScroll />
+        <CustomCursor />
+        <PageTransition />
 
-        <main>{children}</main>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-foreground"
+        >
+          Skip to content
+        </a>
 
-        {/* Footer — rendered entirely from content/site.ts. Unstyled. */}
-        <footer>
-          {site.footerGroups.map((group) => (
-            <nav key={group.title} aria-label={group.title}>
-              <h2>{group.title}</h2>
-              <ul>
-                {group.items.map((item) => (
-                  <li key={item.href}>
-                    <a href={item.href}>{item.label}</a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          ))}
+        <Header />
 
-          <address>
-            <a href={`mailto:${contact.email}`}>{contact.email}</a>
-            <br />
-            <a href={whatsappHref}>WhatsApp: {contact.whatsapp}</a>
-            <br />
-            {contact.location}
-            <br />
-            {contact.availability}
-          </address>
-        </footer>
+        <main id="main" className="pt-24">
+          {children}
+        </main>
+
+        <Footer />
       </body>
     </html>
   );

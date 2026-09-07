@@ -41,7 +41,7 @@ export function getServiceForPortfolio(
   portfolioSlug: string,
 ): ServiceCategory | undefined {
   const item = getPortfolioItem(portfolioSlug);
-  return item ? getService(item.relatedService) : undefined;
+  return item ? getService(item.category) : undefined;
 }
 
 /** The case studies related to a service category. */

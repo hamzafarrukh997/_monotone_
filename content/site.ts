@@ -44,17 +44,44 @@ export const site = {
   /** Canonical production origin. Swap for the real domain before launch. */
   url: "https://monotone.agency",
 
-  /** Primary header navigation. `Services` opens a dropdown of the 4 categories. */
+  /** Primary header navigation. */
   nav: [
-    { label: "Work", href: "/work" },
     { label: "Services", href: "/services", children: serviceNavItems },
-    { label: "Process", href: "/process" },
+    { label: "Work", href: "/work" },
     { label: "Offers", href: "/offers" },
     { label: "Insights", href: "/blog" },
   ] satisfies NavItem[],
 
   /** Header call-to-action. */
-  cta: { label: "Book a call", href: "/contact" } satisfies NavItem,
+  cta: { label: "Let's Talk", href: "/contact" } satisfies NavItem,
+
+  projectRequest: {
+    title: "Tell us about your project",
+    servicePrompt: "What can we help you with?",
+    serviceOptions: [...services.map((service) => service.title), "Other"],
+    budgetPrompt: "What budget range are you considering?",
+    budgetOptions: ["$2k–$5k", "$5k–$10k", "$10k–$25k", "$25k+"],
+    detailsPrompt: "Your information",
+    namePlaceholder: "Your name",
+    emailPlaceholder: "Your email",
+    detailsPlaceholder: "Tell us what you want to build",
+    submitLabel: "Submit",
+    sentLabel: "Sent",
+    successMessage: "Thanks — we’ve received your request and will get back to you soon.",
+    errorMessage: "Please complete the highlighted fields.",
+    sendErrorMessage:
+      "Something went wrong sending your request. Please try again or email us directly.",
+  },
+
+  footerCta: {
+    heading: {
+      before: "Let’s build the website",
+      after: "your business deserves.",
+    },
+    body: "Bring us the rough idea, the half-finished brief, or the website that has stopped pulling its weight. We’ll help you find the clearest way forward.",
+    cta: "Start the conversation",
+    note: "No polished brief required.",
+  },
 
   /** Footer link groups. `Services` mirrors the 4 categories ONLY. */
   footerGroups: [
@@ -84,7 +111,7 @@ export const site = {
 
   contact: {
     email: "hello@monotone.agency",
-    whatsapp: "+1 (555) 010-0100",
+    whatsapp: "+92 305 4602778",
     location: "Remote — worldwide",
     availability: "Booking new projects for Q4",
   } satisfies ContactBlock,

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1726 251" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-3107.140987,-2481.193024)">
+        <g id="Layer-1" serif:id="Layer 1">
+        </g>
+        <g id="Artboard2" transform="matrix(0.695735,0,0,0.071508,1217.151102,2481.193024)">
+            <rect x="2716.535" y="0" width="2480.315" height="3507.874" style="fill:none;"/>
+            <g transform="matrix(2.981954,0,0,29.013012,2087.8041,-34295.792599)">
+                <g transform="matrix(4.166667,0,0,4.166667,424.762149,2456.309686)">
+                    <g transform="matrix(1.260452,0,0,1.260452,-50.36961,-305.269049)">
+                        <g transform="matrix(1,0,0,1,34.6761,11.5952)">
+                            <path d="M0,0.04L0,6.96L-3.496,6.96C-4.442,6.96 -5.346,6.566 -5.991,5.874L-10.874,0.627C-11.222,0.253 -11.711,0.04 -12.222,0.04L-13.88,0.04L-13.88,-6.92L-10.483,-6.92C-9.474,-6.92 -8.509,-6.5 -7.821,-5.761L-3.007,-0.591C-2.633,-0.188 -2.108,0.04 -1.559,0.04L0,0.04Z" style="fill:rgb(255,90,31);fill-rule:nonzero;"/>
+                        </g>
+                        <g transform="matrix(1,0,0,1,20.7961,11.5952)">
+                            <path d="M0,0.04L0,6.96L-3.496,6.96C-4.442,6.96 -5.346,6.566 -5.991,5.874L-10.874,0.627C-11.222,0.253 -11.711,0.04 -12.222,0.04L-13.88,0.04L-13.88,-6.92L-10.483,-6.92C-9.474,-6.92 -8.509,-6.5 -7.821,-5.761L-3.007,-0.591C-2.633,-0.188 -2.108,0.04 -1.559,0.04L0,0.04Z" style="fill:rgb(255,90,31);fill-rule:nonzero;"/>
+                        </g>
+                        <g transform="matrix(1,0,0,1,0,5.6141)">
+                            <rect x="0" y="6.025" width="6.916" height="6.916" style="fill:rgb(255,90,31);"/>
+                        </g>
+                    </g>
+                    <g transform="matrix(0.608159,0,0,0.608159,-693.513842,-1482.931232)">
+                        <g transform="matrix(50,0,0,50,1378.677564,1974.837162)">
+                        </g>
+                        <text x="1149.428px" y="1974.837px" style="font-family:'StackSansHeadline-Regular', 'Stack Sans Headline';font-size:50px;fill:white;">m<tspan x="1191.628px 1221.228px 1248.278px 1276.928px 1292.078px 1321.678px 1348.728px " y="1974.837px 1974.837px 1974.837px 1974.837px 1974.837px 1974.837px 1974.837px ">onotone</tspan></text>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -4,8 +4,8 @@ import { cn } from "@/lib/cn";
 
 type NextLinkHref = ComponentProps<typeof NextLink>["href"];
 
-type Variant = "primary" | "secondary" | "ghost";
-type Size = "md" | "lg";
+type Variant = "primary" | "secondary" | "ghost" | "dark";
+type Size = "sm" | "md" | "lg";
 
 const base =
   "inline-flex items-center justify-center gap-2 rounded-pill font-sans font-semibold transition-colors focus-visible:outline-none disabled:opacity-50 disabled:pointer-events-none";
@@ -14,9 +14,11 @@ const variants: Record<Variant, string> = {
   primary: "bg-accent text-accent-foreground hover:bg-accent/90",
   secondary: "border border-accent text-fg hover:bg-accent/15",
   ghost: "text-fg hover:bg-fg/10",
+  dark: "bg-pill text-white hover:bg-pill/85",
 };
 
 const sizes: Record<Size, string> = {
+  sm: "h-9 px-4 text-xs",
   md: "h-10 px-5 text-sm",
   lg: "h-12 px-7 text-sm",
 };

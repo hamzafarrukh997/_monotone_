@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getOffer, offerSlugs } from "@/content/offers";
-import { getOtherOffers, routes } from "@/lib/links";
+import { routes } from "@/lib/links";
+import { OfferDetailHero } from "@/components/sections/OfferDetailHero";
+import { OfferIncludedSection } from "@/components/sections/OfferIncludedSection";
+import { OfferWhySection } from "@/components/sections/OfferWhySection";
+import { OfferTimelineSection } from "@/components/sections/OfferTimelineSection";
+import { OfferGuaranteeSection } from "@/components/sections/OfferGuaranteeSection";
+import { OfferCrossLinks } from "@/components/sections/OfferCrossLinks";
+import { OfferClosingCta } from "@/components/sections/OfferClosingCta";
 
 export function generateStaticParams() {
   return offerSlugs.map((slug) => ({ slug }));
@@ -27,30 +34,15 @@ export default async function OfferDetailPage({
   const offer = getOffer(slug);
   if (!offer) notFound();
 
-  const otherOffers = getOtherOffers(offer.slug);
-
   return (
     <>
-      <h1>{offer.title}</h1>
-      <p>{offer.summary}</p>
-
-      {otherOffers.length > 0 ? (
-        <section aria-label="Other offers">
-          <h2>Other offers</h2>
-          <ul>
-            {otherOffers.map((other) => (
-              <li key={other.slug}>
-                <a href={routes.offer(other.slug)}>{other.title}</a>
-              </li>
-            ))}
-          </ul>
-          <a href={routes.offers}>All offers</a>
-        </section>
-      ) : null}
-
-      <section aria-label="Contact call to action">
-        <a href={routes.contact}>Book a call</a>
-      </section>
+      <OfferDetailHero offer={offer} />
+      <OfferIncludedSection offer={offer} />
+      <OfferWhySection offer={offer} />
+      <OfferTimelineSection offer={offer} />
+      <OfferGuaranteeSection offer={offer} />
+      <OfferCrossLinks currentSlug={offer.slug} />
+      <OfferClosingCta offer={offer} />
     </>
   );
 }

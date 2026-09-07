@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { FAQShowcase } from "@/components/sections/FAQShowcase";
+import { ServiceDetailHero } from "@/components/sections/ServiceDetailHero";
+import { ServiceDetailSection } from "@/components/sections/ServiceDetailSection";
 import { getService, serviceSlugs } from "@/content/services";
-import { getPortfolioForService, routes } from "@/lib/links";
+import { routes } from "@/lib/links";
 
 export function generateStaticParams() {
   return serviceSlugs.map((category) => ({ category }));
@@ -27,46 +30,29 @@ export default async function ServiceCategoryPage({
   const service = getService(category);
   if (!service) notFound();
 
-  const relatedPortfolio = getPortfolioForService(service.slug);
-
   return (
     <>
-      <h1>{service.title}</h1>
-      <p>{service.excerpt}</p>
-
-      {/* Sub-services: on-page content only. Intentionally NOT links —
-          sub-service routes are deferred to a later phase. */}
-      <section aria-label="What's included">
-        <h2>What&apos;s included</h2>
-        <ul>
-          {service.subServices.map((sub) => (
-            <li key={sub.slug}>
-              <strong>{sub.title}</strong> — {sub.excerpt}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Related portfolio */}
-      {relatedPortfolio.length > 0 ? (
-        <section aria-label="Related work">
-          <h2>Related work</h2>
-          <ul>
-            {relatedPortfolio.map((item) => (
-              <li key={item.slug}>
-                <a href={routes.workItem(item.slug)}>{item.title}</a>
-              </li>
-            ))}
-          </ul>
-          <a href={routes.work}>All work</a>
-        </section>
+      <ServiceDetailHero service={service} />
+      {service.detailSections.map((section, index) => (
+        <ServiceDetailSection
+          key={section.slug}
+          section={section}
+          connectTimelineFromTop={index > 0}
+        />
+      ))}
+      {service.faq ? (
+        <>
+          <div
+            aria-hidden="true"
+            className="h-[clamp(5rem,7.292vw,8.75rem)] bg-white"
+          />
+          <FAQShowcase
+            heading={service.faq.heading}
+            items={service.faq.items}
+            sectionId={`service-${service.slug}-faq`}
+          />
+        </>
       ) : null}
-
-      {/* Cross-links */}
-      <section aria-label="Contact call to action">
-        <a href={routes.offers}>View offers</a>
-        <a href={routes.contact}>Book a call</a>
-      </section>
     </>
   );
 }

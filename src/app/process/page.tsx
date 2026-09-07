@@ -48,7 +48,7 @@ export default function ProcessPage() {
         <ul>
           {portfolio.map((item) => (
             <li key={item.slug}>
-              <a href={routes.workItem(item.slug)}>{item.title}</a>
+              <a href={routes.workItem(item.slug)}>{item.client}</a>
             </li>
           ))}
         </ul>

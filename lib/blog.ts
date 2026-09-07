@@ -14,11 +14,19 @@ const BLOG_DIR = path.join(process.cwd(), "content", "blog");
 
 export type PostMeta = {
   title: string;
+  metaTitle: string;
   slug: string;
   date: string;
   excerpt: string;
   cover: string;
   tags: string[];
+  category: string;
+  kicker: string;
+  readTime: string;
+  visual: string;
+  featured: boolean;
+  toc: string[];
+  faqs: { question: string; answer: string }[];
   /** Slugs of related service categories (content/services.ts). */
   relatedServices: string[];
 };
@@ -36,11 +44,26 @@ function readPostFile(fileName: string): Post {
 
   const meta: PostMeta = {
     title: String(data.title ?? ""),
+    metaTitle: String(data.metaTitle ?? data.title ?? ""),
     slug: String(data.slug ?? fileName.replace(/\.mdx?$/, "")),
     date: String(data.date ?? ""),
     excerpt: String(data.excerpt ?? ""),
     cover: String(data.cover ?? ""),
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
+    category: String(data.category ?? data.tags?.[0] ?? "Studio notes"),
+    kicker: String(data.kicker ?? "Useful thinking, clearly shared."),
+    readTime: String(data.readTime ?? "4 min read"),
+    visual: String(data.visual ?? "clarity"),
+    featured: Boolean(data.featured ?? false),
+    toc: Array.isArray(data.toc) ? data.toc.map(String) : [],
+    faqs: Array.isArray(data.faqs)
+      ? data.faqs
+          .map((item) => ({
+            question: String(item?.question ?? ""),
+            answer: String(item?.answer ?? ""),
+          }))
+          .filter((item) => item.question && item.answer)
+      : [],
     relatedServices: Array.isArray(data.relatedServices)
       ? data.relatedServices.map(String)
       : [],
@@ -58,7 +81,11 @@ function listPostFiles(): string[] {
 export function getAllPosts(): PostMeta[] {
   return listPostFiles()
     .map((file) => readPostFile(file).meta)
-    .sort((a, b) => (a.date < b.date ? 1 : -1));
+    .sort((a, b) => {
+      if (a.featured !== b.featured) return a.featured ? -1 : 1;
+      if (a.date === b.date) return a.title.localeCompare(b.title);
+      return a.date < b.date ? 1 : -1;
+    });
 }
 
 export function getAllPostSlugs(): string[] {

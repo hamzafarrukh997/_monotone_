@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
-import { services, routes } from "@/lib/links";
+import { FAQShowcase } from "@/components/sections/FAQShowcase";
+import { ServicesDesignSection } from "@/components/sections/ServicesDesignSection";
+import { ServicesDevelopmentSection } from "@/components/sections/ServicesDevelopmentSection";
+import { ServicesGrowthMarketingSection } from "@/components/sections/ServicesGrowthMarketingSection";
+import { ServicesHero } from "@/components/sections/ServicesHero";
+import { ServicesMaintenanceSection } from "@/components/sections/ServicesMaintenanceSection";
+import { servicesPage } from "@/content/services";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -10,19 +16,16 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
-      <h1>Services</h1>
-      <ul>
-        {services.map((service) => (
-          <li key={service.slug}>
-            <a href={routes.service(service.slug)}>{service.title}</a> —{" "}
-            {service.excerpt}
-          </li>
-        ))}
-      </ul>
-
-      <section aria-label="Contact call to action">
-        <a href={routes.contact}>Book a call</a>
-      </section>
+      <ServicesHero />
+      <ServicesDesignSection />
+      <ServicesDevelopmentSection />
+      <ServicesGrowthMarketingSection />
+      <ServicesMaintenanceSection />
+      <FAQShowcase
+        heading={servicesPage.faq.heading}
+        items={servicesPage.faq.items}
+        sectionId="services-faq"
+      />
     </>
   );
 }

@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getPortfolioItem, portfolioSlugs } from "@/content/portfolio";
-import { getOtherPortfolio, getServiceForPortfolio, routes } from "@/lib/links";
+import {
+  getCaseStudy,
+  portfolioSlugs,
+  publishedCaseStudies,
+} from "@/content/portfolio";
+import { getServiceForPortfolio, routes } from "@/lib/links";
+import { site } from "@/content/site";
+import { CaseStudyDetail } from "@/components/sections/CaseStudyDetail";
 
 export function generateStaticParams() {
   return portfolioSlugs.map((slug) => ({ slug }));
@@ -11,12 +17,19 @@ export async function generateMetadata({
   params,
 }: PageProps<"/work/[slug]">): Promise<Metadata> {
   const { slug } = await params;
-  const item = getPortfolioItem(slug);
-  if (!item) return {};
+  const study = getCaseStudy(slug);
+  if (!study) return {};
+
   return {
-    title: item.title,
-    description: item.summary,
-    alternates: { canonical: routes.workItem(item.slug) },
+    title: study.client,
+    description: study.summary,
+    alternates: { canonical: routes.workItem(study.slug) },
+    openGraph: {
+      type: "article",
+      title: study.client,
+      description: study.summary,
+      url: routes.workItem(study.slug),
+    },
   };
 }
 
@@ -24,43 +37,43 @@ export default async function WorkDetailPage({
   params,
 }: PageProps<"/work/[slug]">) {
   const { slug } = await params;
-  const item = getPortfolioItem(slug);
-  if (!item) notFound();
+  const study = getCaseStudy(slug);
+  if (!study) notFound();
 
-  const relatedService = getServiceForPortfolio(item.slug);
-  const otherWork = getOtherPortfolio(item.slug);
+  const index = publishedCaseStudies.findIndex((item) => item.slug === study.slug);
+  const nextStudy =
+    publishedCaseStudies[(index + 1) % publishedCaseStudies.length];
+  const relatedService = getServiceForPortfolio(study.slug);
+  const canonicalUrl = new URL(routes.workItem(study.slug), site.url).toString();
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: study.client,
+    description: study.summary,
+    url: canonicalUrl,
+    dateCreated: study.year,
+    creator: {
+      "@type": "Organization",
+      name: site.name,
+      url: site.url,
+    },
+    about: study.services,
+  };
 
   return (
     <>
-      <h1>{item.title}</h1>
-      <p>{item.summary}</p>
-
-      {/* Related service category */}
-      {relatedService ? (
-        <section aria-label="Related service">
-          <h2>Related service</h2>
-          <a href={routes.service(relatedService.slug)}>{relatedService.title}</a>
-        </section>
-      ) : null}
-
-      {/* The other case studies */}
-      {otherWork.length > 0 ? (
-        <section aria-label="More work">
-          <h2>More work</h2>
-          <ul>
-            {otherWork.map((other) => (
-              <li key={other.slug}>
-                <a href={routes.workItem(other.slug)}>{other.title}</a>
-              </li>
-            ))}
-          </ul>
-          <a href={routes.work}>All work</a>
-        </section>
-      ) : null}
-
-      <section aria-label="Contact call to action">
-        <a href={routes.contact}>Start a project</a>
-      </section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }}
+      />
+      <CaseStudyDetail
+        study={study}
+        projectNumber={String(index + 1).padStart(2, "0")}
+        relatedService={relatedService}
+        nextStudy={nextStudy}
+      />
     </>
   );
 }

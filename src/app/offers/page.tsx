@@ -1,26 +1,20 @@
 import type { Metadata } from "next";
-import { offers, routes } from "@/lib/links";
+import { OffersHero } from "@/components/sections/OffersHero";
+import { OffersPackagesSection } from "@/components/sections/OffersPackagesSection";
+import { OffersNotSure } from "@/components/sections/OffersNotSure";
 
 export const metadata: Metadata = {
   title: "Offers",
-  description: "Productised ways to work with Monotone.",
+  description:
+    "Starter, Complete, and Support — three guaranteed ways to work with Monotone.",
 };
 
 export default function OffersPage() {
   return (
     <>
-      <h1>Offers</h1>
-      <ul>
-        {offers.map((offer) => (
-          <li key={offer.slug}>
-            <a href={routes.offer(offer.slug)}>{offer.title}</a> — {offer.summary}
-          </li>
-        ))}
-      </ul>
-
-      <section aria-label="Contact call to action">
-        <a href={routes.contact}>Book a call</a>
-      </section>
+      <OffersHero />
+      <OffersPackagesSection />
+      <OffersNotSure />
     </>
   );
 }
