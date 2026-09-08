@@ -64,56 +64,6 @@ export function ProcessShowcase() {
 
     const update = () => {
       frameRef.current = null;
-      const sectionRectangle = section.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const gradientTravel = sectionRectangle.height + viewportHeight;
-      const rawGradientProgress = Math.min(
-        1,
-        Math.max(
-          0,
-          (viewportHeight - sectionRectangle.top) / gradientTravel,
-        ),
-      );
-      const gradientProgress = motionQuery.matches
-        ? 0.5
-        : rawGradientProgress;
-      const entranceVisibility = Math.min(
-        1,
-        Math.max(
-          0,
-          (viewportHeight - sectionRectangle.top) / (viewportHeight * 0.72),
-        ),
-      );
-      const exitVisibility = Math.min(
-        1,
-        Math.max(0, sectionRectangle.bottom / (viewportHeight * 0.72)),
-      );
-      const gradientVisibility = Math.min(
-        entranceVisibility,
-        exitVisibility,
-      );
-
-      section.style.setProperty(
-        "--process-gradient-x",
-        `${(-12 + gradientProgress * 24).toFixed(2)}vw`,
-      );
-      section.style.setProperty(
-        "--process-gradient-y",
-        `${(14 - gradientProgress * 30).toFixed(2)}vh`,
-      );
-      section.style.setProperty(
-        "--process-gradient-rotate",
-        `${(-16 + gradientProgress * 31).toFixed(2)}deg`,
-      );
-      section.style.setProperty(
-        "--process-gradient-scale",
-        (1.03 + Math.sin(gradientProgress * Math.PI) * 0.11).toFixed(4),
-      );
-      section.style.setProperty(
-        "--process-gradient-visibility",
-        gradientVisibility.toFixed(4),
-      );
-
       const cards = cardRefs.current.filter(
         (card): card is HTMLElement => card !== null,
       );
@@ -210,18 +160,10 @@ export function ProcessShowcase() {
     <section
       ref={sectionRef}
       data-header-theme="dark"
-      className="process-showcase relative overflow-clip bg-[#2b2b2b] text-white [--process-rail-height:1.5rem] [--process-surface:#2b2b2b] [--process-sticky-top:9.75rem] min-[35.001rem]:[--process-sticky-top:10.5rem] lg:[--process-sticky-top:clamp(9rem,27svh,19rem)]"
+      className="process-showcase relative overflow-clip text-white [--process-rail-height:1.5rem] [--process-surface:#2b2b2b] [--process-sticky-top:9.75rem] min-[35.001rem]:[--process-sticky-top:10.5rem] lg:[--process-sticky-top:clamp(9rem,27svh,19rem)]"
       aria-labelledby="process-showcase-heading"
     >
-      <div
-        className="process-showcase__gradient-stage pointer-events-none sticky top-0 z-0 h-svh overflow-hidden"
-        aria-hidden="true"
-      >
-        <div className="process-showcase__gradient-field absolute inset-[-24vmax] will-change-transform" />
-        <div className="process-showcase__gradient-scrim absolute inset-0" />
-      </div>
-
-      <div className="process-showcase__canvas relative z-10 -mt-[100svh] mx-auto w-full max-w-[120rem] px-5 pt-24 min-[35.001rem]:px-[clamp(1.25rem,5vw,6rem)] lg:pt-[clamp(6.5rem,9vw,10.5rem)]">
+      <div className="process-showcase__canvas relative z-10 mx-auto w-full max-w-[120rem] px-5 pt-24 min-[35.001rem]:px-[clamp(1.25rem,5vw,6rem)] lg:pt-[clamp(6.5rem,9vw,10.5rem)]">
         <h2
           id="process-showcase-heading"
           className="process-showcase__heading mx-auto mb-24 max-w-[12ch] text-center font-display text-[clamp(2.75rem,13vw,4rem)] leading-[1.05] font-normal tracking-[-0.06em] lg:mb-[clamp(5.5rem,12svh,9rem)] lg:max-w-none lg:text-[clamp(3rem,4.15vw,4.8rem)]"

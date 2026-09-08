@@ -22,7 +22,6 @@ export function CustomCursor() {
 
     if (!cursor || !finePointer.matches || reducedMotion.matches) return;
 
-    const root = document.documentElement;
     let frame = 0;
     let hideTimer = 0;
     let hasPosition = false;
@@ -32,8 +31,6 @@ export function CustomCursor() {
     let currentY = 0;
     let velocityX = 0;
     let velocityY = 0;
-
-    root.classList.add("custom-cursor-enabled");
 
     const render = () => {
       velocityX += (targetX - currentX) * CURSOR_LERP;
@@ -128,7 +125,6 @@ export function CustomCursor() {
     document.addEventListener("mouseout", handlePointerLeave);
 
     return () => {
-      root.classList.remove("custom-cursor-enabled");
       window.cancelAnimationFrame(frame);
       window.clearTimeout(hideTimer);
       window.removeEventListener("pointermove", handlePointerMove);

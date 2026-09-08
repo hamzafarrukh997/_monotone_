@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import NextLink from "next/link";
+import { usePathname } from "next/navigation";
 import type { ComponentProps } from "react";
 import { home } from "@/content/home";
 import { site } from "@/content/site";
@@ -176,6 +177,61 @@ function MenuControls({
   );
 }
 
+function DesktopNavigation({
+  onProjectOpen,
+  projectOpen,
+  onDark,
+}: {
+  onProjectOpen: () => void;
+  projectOpen: boolean;
+  onDark: boolean;
+}) {
+  const pathname = usePathname();
+
+  return (
+    <div
+      data-on-dark={onDark}
+      className="header-desktop-nav pointer-events-auto flex items-center"
+    >
+      <nav aria-label="Primary">
+        <ul className="header-desktop-nav__list">
+          {site.nav.map((item) => {
+            const current =
+              pathname === item.href || pathname.startsWith(`${item.href}/`);
+
+            return (
+              <li key={item.href}>
+                <NextLink
+                  href={item.href as unknown as NextLinkHref}
+                  aria-current={current ? "page" : undefined}
+                  className="header-desktop-nav__link"
+                >
+                  {item.label}
+                </NextLink>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+
+      <button
+        type="button"
+        aria-haspopup="dialog"
+        aria-expanded={projectOpen}
+        aria-controls="project-request-dialog"
+        onClick={onProjectOpen}
+        className="project-trigger project-trigger--desktop"
+      >
+        <span className="project-trigger__label">{site.cta.label}</span>
+        <span className="project-trigger__icon" aria-hidden="true">
+          <span className="project-trigger__arrow project-trigger__arrow--front">↗</span>
+          <span className="project-trigger__arrow project-trigger__arrow--back">↗</span>
+        </span>
+      </button>
+    </div>
+  );
+}
+
 export function Header() {
   const [open, setOpen] = useState(false);
   const [projectOpen, setProjectOpen] = useState(false);
@@ -254,7 +310,7 @@ export function Header() {
         aria-hidden="true"
         tabIndex={-1}
         onClick={close}
-        className="menu-page-overlay fixed inset-0 z-40 cursor-default"
+        className="menu-page-overlay fixed inset-0 z-40 cursor-default lg:hidden"
       />
 
       <header
@@ -262,15 +318,6 @@ export function Header() {
         className="header-shell pointer-events-none fixed inset-x-0 z-50"
       >
         <div className="relative z-[1] h-[323px] w-full">
-          <div className="design-canvas-1920 absolute left-1/2 top-0 z-50 hidden h-[323px] w-[1386px] origin-top lg:block">
-            <NavPanel
-              id="site-menu-desktop"
-              open={open}
-              onNavigate={close}
-              className="absolute right-[54px] top-[4px] z-10 h-[340px] w-[240px]"
-            />
-          </div>
-
           <div className="absolute inset-x-0 top-0 z-[60] hidden h-[var(--header-bar-height)] lg:block">
             <div className="relative mx-auto h-full w-full max-w-[120rem]">
               <div className="header-brand-scale absolute left-[clamp(4.5rem,5.63vw,6.75rem)] top-1/2">
@@ -278,11 +325,9 @@ export function Header() {
               </div>
 
               <div className="header-controls-scale absolute right-[clamp(4rem,5.05vw,6.0625rem)] top-1/2">
-                <MenuControls
-                  open={open}
+                <DesktopNavigation
+                  onDark={brandOnDark}
                   projectOpen={projectOpen}
-                  menuId="site-menu-desktop"
-                  onToggle={toggle}
                   onProjectOpen={openProjectRequest}
                 />
               </div>

@@ -149,7 +149,6 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 2rem;
-  overflow: hidden;
 }
 
 .page-wipe__eyebrow {
@@ -162,26 +161,17 @@
 }
 
 .page-wipe__title {
-  max-width: 85vw;
+  min-width: 0;
+  max-width: min(85vw, 18ch);
+  flex: 1;
   font-family: var(--font-parkinsans);
-  font-size: clamp(3.5rem, 10vw, 11rem);
-  line-height: 0.82;
+  font-size: clamp(3.5rem, 8vw, 9.5rem);
+  line-height: 0.9;
   font-weight: 300;
   letter-spacing: -0.075em;
+  overflow-wrap: break-word;
   text-align: right;
-  transform: translateY(115%);
-  transition: transform 580ms cubic-bezier(0.16, 1, 0.3, 1) 150ms;
-}
-
-.page-wipe[data-phase="covering"] .page-wipe__title,
-.page-wipe[data-phase="covered"] .page-wipe__title {
-  transform: translateY(0);
-}
-
-.page-wipe[data-phase="revealing"] .page-wipe__title {
-  transform: translateY(-115%);
-  transition-duration: 420ms;
-  transition-delay: 0ms;
+  text-wrap: balance;
 }
 
 .page-wipe__index {
@@ -206,7 +196,7 @@
 
   .page-wipe__title {
     max-width: 100%;
-    font-size: clamp(3.25rem, 18vw, 5rem);
+    font-size: clamp(2.75rem, 13vw, 4.25rem);
   }
 }
 
@@ -216,10 +206,9 @@
   }
 }
 
-/* Custom cursor ----------------------------------------------------------
-   A compact brand-colour resting dot that morphs into an action pointer.
-   It is enabled only for precise mouse/trackpad input; editable controls,
-   touch devices, and reduced-motion users retain their native cursor. */
+/* Decorative cursor follower ------------------------------------------------
+   This restores the original spring-follow and action morph while leaving the
+   browser's native cursor visible for familiar pointing and accessibility. */
 .site-cursor {
   --site-cursor-scale: 1;
   position: fixed;
@@ -304,28 +293,6 @@
   --site-cursor-scale: 0.78;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  html.custom-cursor-enabled,
-  html.custom-cursor-enabled body,
-  html.custom-cursor-enabled a,
-  html.custom-cursor-enabled button,
-  html.custom-cursor-enabled summary,
-  html.custom-cursor-enabled [role="button"] {
-    cursor: none !important;
-  }
-
-  html.custom-cursor-enabled input,
-  html.custom-cursor-enabled textarea,
-  html.custom-cursor-enabled [contenteditable="true"] {
-    cursor: text !important;
-  }
-
-  html.custom-cursor-enabled select,
-  html.custom-cursor-enabled [data-cursor="none"] {
-    cursor: auto !important;
-  }
-}
-
 /* Scale the original 1386px Figma canvas fluidly to the 1920px desktop target. */
 @media (min-width: 64rem) {
   .design-canvas-1920 {
@@ -407,6 +374,70 @@
 
 .header-brand-chip[data-on-dark="true"] .header-brand-chip__name {
   color: #ffffff;
+}
+
+.header-desktop-nav {
+  gap: 24px;
+  color: #2b2b2b;
+  transition: color 0.25s ease;
+}
+
+.header-desktop-nav[data-on-dark="true"] {
+  color: #ffffff;
+}
+
+.header-desktop-nav__list {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.header-desktop-nav__link {
+  position: relative;
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  color: currentColor;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.42px;
+  line-height: 1;
+  text-decoration: none;
+  transition:
+    color 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.header-desktop-nav__link::after {
+  position: absolute;
+  right: 0;
+  bottom: 2px;
+  left: 0;
+  height: 2px;
+  border-radius: 9999px;
+  background: var(--color-accent);
+  content: "";
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition:
+    opacity 0.25s ease,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.header-desktop-nav__link:hover::after,
+.header-desktop-nav__link:focus-visible::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.header-desktop-nav__link[aria-current="page"]::after {
+  opacity: 1;
+  transform: scaleX(0.32);
 }
 
 .header-menu-control {
@@ -600,7 +631,6 @@
   display: block;
   width: 100%;
   height: 100%;
-  filter: saturate(1.35);
   opacity: 0;
   transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -641,7 +671,7 @@
   content: "";
   transform: translate(-50%, -50%) scale(0);
   transform-origin: center;
-  transition: transform 560ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 900ms cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
 }
 
@@ -732,7 +762,7 @@
   content: "";
   transform: translate(-50%, -50%) scale(0);
   transform-origin: center;
-  transition: transform 560ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 900ms cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
 }
 
@@ -999,94 +1029,35 @@
   }
 }
 
-/* Process gradient ---------------------------------------------------------
-   A viewport-sized field stays pinned while the tall step stack moves past it.
-   The component updates only a handful of transform variables from its existing
-   scroll loop, giving the section KOTA-like movement without a second listener
-   or the rendering overhead of another WebGL canvas. */
-.process-showcase__gradient-stage {
-  opacity: var(--process-gradient-visibility, 0);
-  transition: opacity 180ms linear;
-}
-
-.process-showcase__gradient-field {
-  transform: translate3d(
-      var(--process-gradient-x, -12vw),
-      var(--process-gradient-y, 14vh),
-      0
-    )
-    rotate(var(--process-gradient-rotate, -16deg))
-    scale(var(--process-gradient-scale, 1.03));
-  transform-origin: 54% 48%;
-  background:
-    radial-gradient(
-      ellipse 34% 54% at 72% 42%,
-      rgb(255 255 255 / 24%) 0%,
-      rgb(255 255 255 / 9%) 29%,
-      transparent 65%
-    ),
-    radial-gradient(
-      ellipse 43% 58% at 68% 54%,
-      rgb(255 90 31 / 78%) 0%,
-      rgb(255 90 31 / 42%) 35%,
-      rgb(255 90 31 / 10%) 61%,
-      transparent 76%
-    ),
-    radial-gradient(
-      ellipse 38% 44% at 22% 74%,
-      rgb(255 90 31 / 38%) 0%,
-      rgb(255 90 31 / 12%) 48%,
-      transparent 74%
-    );
-  filter: blur(clamp(2.75rem, 5.5vw, 6.5rem)) saturate(1.04);
-}
-
-.process-showcase__gradient-scrim {
+/* Process background -------------------------------------------------------
+   Soft colour stops create the glow directly on the section without a large
+   blurred layer, sticky surface, or per-frame gradient updates. */
+.process-showcase {
   background:
     linear-gradient(
       90deg,
-      rgb(43 43 43 / 76%) 0%,
-      rgb(43 43 43 / 34%) 47%,
-      rgb(43 43 43 / 54%) 100%
+      rgb(43 43 43 / 54%) 0%,
+      transparent 46%,
+      rgb(43 43 43 / 20%) 100%
+    ),
+    radial-gradient(
+      ellipse 72% 42% at 82% 40%,
+      rgb(255 90 31 / 36%) 0%,
+      rgb(255 90 31 / 17%) 38%,
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 62% 34% at 18% 82%,
+      rgb(255 90 31 / 14%) 0%,
+      rgb(255 90 31 / 6%) 42%,
+      transparent 72%
     ),
     linear-gradient(
       180deg,
-      rgb(43 43 43 / 78%) 0%,
-      transparent 24%,
-      transparent 74%,
-      rgb(43 43 43 / 84%) 100%
+      #2b2b2b 0%,
+      #312c2a 48%,
+      #2b2b2b 100%
     );
-}
-
-@media (max-width: 47.999rem) {
-  .process-showcase__gradient-field {
-    inset: -14vmax;
-    background:
-      radial-gradient(
-        ellipse 42% 56% at 70% 46%,
-        rgb(255 255 255 / 18%) 0%,
-        rgb(255 90 31 / 52%) 33%,
-        rgb(255 90 31 / 12%) 62%,
-        transparent 77%
-      ),
-      radial-gradient(
-        ellipse 40% 46% at 24% 74%,
-        rgb(255 90 31 / 32%) 0%,
-        rgb(255 90 31 / 9%) 49%,
-        transparent 73%
-      );
-    filter: blur(2.25rem) saturate(1.02);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .process-showcase__gradient-stage {
-    transition: none;
-  }
-
-  .process-showcase__gradient-field {
-    transform: translate3d(0, -1vh, 0) rotate(-0.5deg) scale(1.08);
-  }
 }
 
 @media (max-width: 63.999rem) {
@@ -3310,6 +3281,9 @@
 
   .header-shell,
   .header-scroll-surface,
+  .header-desktop-nav,
+  .header-desktop-nav__link,
+  .header-desktop-nav__link::after,
   .project-trigger__label,
   .project-trigger__icon,
   .project-trigger__arrow,

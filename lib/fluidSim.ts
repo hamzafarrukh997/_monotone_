@@ -30,7 +30,7 @@ display) are unchanged. Wrapped as a factory so React owns the lifecycle
 (start/stop/destroy) instead of the original's self-driving global script.
 Color generation is replaced with a fixed Monotone orange-led sampler in
 place of the original's free-roaming HSV cycle. Device pixel ratio is capped
-at 2 and float-texture support is required outright (no soft fallback) so
+at 1.5 and float-texture support is required outright (no soft fallback) so
 the caller can show a static CSS fallback instead.
 */
 
@@ -62,12 +62,12 @@ export interface FluidSimHandle {
 }
 
 const DEFAULT_CONFIG: FluidSimConfig = {
-  SIM_RESOLUTION: 128,
-  DYE_RESOLUTION: 1024,
+  SIM_RESOLUTION: 96,
+  DYE_RESOLUTION: 768,
   DENSITY_DISSIPATION: 2.5,
   VELOCITY_DISSIPATION: 0.2,
   PRESSURE: 0.8,
-  PRESSURE_ITERATIONS: 20,
+  PRESSURE_ITERATIONS: 12,
   CURL: 30,
   SPLAT_RADIUS: 0.25,
   SPLAT_FORCE: 6000,
@@ -166,7 +166,7 @@ function hashCode(s: string) {
 }
 
 function scaleByPixelRatio(input: number) {
-  const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+  const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
   return Math.floor(input * pixelRatio);
 }
 
@@ -926,17 +926,31 @@ export function createFluidSim(canvas: HTMLCanvasElement, overrides: Partial<Flu
   gl.clearColor(1, 1, 1, 1);
 
   const baseVertexShader = compileShader(gl, gl.VERTEX_SHADER, baseVertexShaderSource);
-  const blurVertexShader = compileShader(gl, gl.VERTEX_SHADER, blurVertexShaderSource);
-  const blurShader = compileShader(gl, gl.FRAGMENT_SHADER, blurShaderSource);
+  const blurVertexShader = config.SUNRAYS
+    ? compileShader(gl, gl.VERTEX_SHADER, blurVertexShaderSource)
+    : null;
+  const blurShader = config.SUNRAYS
+    ? compileShader(gl, gl.FRAGMENT_SHADER, blurShaderSource)
+    : null;
   const copyShader = compileShader(gl, gl.FRAGMENT_SHADER, copyShaderSource);
   const clearShader = compileShader(gl, gl.FRAGMENT_SHADER, clearShaderSource);
   const colorShader = compileShader(gl, gl.FRAGMENT_SHADER, colorShaderSource);
   const checkerboardShader = compileShader(gl, gl.FRAGMENT_SHADER, checkerboardShaderSource);
-  const bloomPrefilterShader = compileShader(gl, gl.FRAGMENT_SHADER, bloomPrefilterShaderSource);
-  const bloomBlurShader = compileShader(gl, gl.FRAGMENT_SHADER, bloomBlurShaderSource);
-  const bloomFinalShader = compileShader(gl, gl.FRAGMENT_SHADER, bloomFinalShaderSource);
-  const sunraysMaskShader = compileShader(gl, gl.FRAGMENT_SHADER, sunraysMaskShaderSource);
-  const sunraysShader = compileShader(gl, gl.FRAGMENT_SHADER, sunraysShaderSource);
+  const bloomPrefilterShader = config.BLOOM
+    ? compileShader(gl, gl.FRAGMENT_SHADER, bloomPrefilterShaderSource)
+    : null;
+  const bloomBlurShader = config.BLOOM
+    ? compileShader(gl, gl.FRAGMENT_SHADER, bloomBlurShaderSource)
+    : null;
+  const bloomFinalShader = config.BLOOM
+    ? compileShader(gl, gl.FRAGMENT_SHADER, bloomFinalShaderSource)
+    : null;
+  const sunraysMaskShader = config.SUNRAYS
+    ? compileShader(gl, gl.FRAGMENT_SHADER, sunraysMaskShaderSource)
+    : null;
+  const sunraysShader = config.SUNRAYS
+    ? compileShader(gl, gl.FRAGMENT_SHADER, sunraysShaderSource)
+    : null;
   const splatShader = compileShader(gl, gl.FRAGMENT_SHADER, splatShaderSource);
   const advectionShader = compileShader(
     gl,
@@ -950,16 +964,28 @@ export function createFluidSim(canvas: HTMLCanvasElement, overrides: Partial<Flu
   const pressureShader = compileShader(gl, gl.FRAGMENT_SHADER, pressureShaderSource);
   const gradientSubtractShader = compileShader(gl, gl.FRAGMENT_SHADER, gradientSubtractShaderSource);
 
-  const blurProgram = new Program(gl, blurVertexShader, blurShader);
+  const blurProgram = blurVertexShader && blurShader
+    ? new Program(gl, blurVertexShader, blurShader)
+    : null;
   const copyProgram = new Program(gl, baseVertexShader, copyShader);
   const clearProgram = new Program(gl, baseVertexShader, clearShader);
   const colorProgram = new Program(gl, baseVertexShader, colorShader);
   const checkerboardProgram = new Program(gl, baseVertexShader, checkerboardShader);
-  const bloomPrefilterProgram = new Program(gl, baseVertexShader, bloomPrefilterShader);
-  const bloomBlurProgram = new Program(gl, baseVertexShader, bloomBlurShader);
-  const bloomFinalProgram = new Program(gl, baseVertexShader, bloomFinalShader);
-  const sunraysMaskProgram = new Program(gl, baseVertexShader, sunraysMaskShader);
-  const sunraysProgram = new Program(gl, baseVertexShader, sunraysShader);
+  const bloomPrefilterProgram = bloomPrefilterShader
+    ? new Program(gl, baseVertexShader, bloomPrefilterShader)
+    : null;
+  const bloomBlurProgram = bloomBlurShader
+    ? new Program(gl, baseVertexShader, bloomBlurShader)
+    : null;
+  const bloomFinalProgram = bloomFinalShader
+    ? new Program(gl, baseVertexShader, bloomFinalShader)
+    : null;
+  const sunraysMaskProgram = sunraysMaskShader
+    ? new Program(gl, baseVertexShader, sunraysMaskShader)
+    : null;
+  const sunraysProgram = sunraysShader
+    ? new Program(gl, baseVertexShader, sunraysShader)
+    : null;
   const splatProgram = new Program(gl, baseVertexShader, splatShader);
   const advectionProgram = new Program(gl, baseVertexShader, advectionShader);
   const divergenceProgram = new Program(gl, baseVertexShader, divergenceShader);
@@ -974,7 +1000,7 @@ export function createFluidSim(canvas: HTMLCanvasElement, overrides: Partial<Flu
     bloomPrefilterProgram, bloomBlurProgram, bloomFinalProgram, sunraysMaskProgram,
     sunraysProgram, splatProgram, advectionProgram, divergenceProgram, curlProgram,
     vorticityProgram, pressureProgram, gradienSubtractProgram,
-  ];
+  ].filter((program): program is Program => program !== null);
 
   function updateKeywords() {
     const displayKeywords: string[] = [];
@@ -1249,6 +1275,7 @@ export function createFluidSim(canvas: HTMLCanvasElement, overrides: Partial<Flu
   }
 
   function blur(target: FBO, temp: FBO, iterations: number) {
+    if (!blurProgram) return;
     blurProgram.bind();
     for (let i = 0; i < iterations; i++) {
       gl.uniform2f(blurProgram.uniforms.texelSize, target.texelSizeX, 0.0);
@@ -1261,7 +1288,14 @@ export function createFluidSim(canvas: HTMLCanvasElement, overrides: Partial<Flu
   }
 
   function applyBloom(source: FBO, destination: FBO) {
-    if (bloomFramebuffers.length < 2) return;
+    if (
+      !bloomPrefilterProgram ||
+      !bloomBlurProgram ||
+      !bloomFinalProgram ||
+      bloomFramebuffers.length < 2
+    ) {
+      return;
+    }
     let last = destination;
 
     gl.disable(gl.BLEND);
@@ -1305,6 +1339,7 @@ export function createFluidSim(canvas: HTMLCanvasElement, overrides: Partial<Flu
   }
 
   function applySunrays(source: FBO, mask: FBO, destination: FBO) {
+    if (!sunraysMaskProgram || !sunraysProgram) return;
     gl.disable(gl.BLEND);
     sunraysMaskProgram.bind();
     gl.uniform1i(sunraysMaskProgram.uniforms.uTexture, source.attach(0));
@@ -1411,20 +1446,19 @@ export function createFluidSim(canvas: HTMLCanvasElement, overrides: Partial<Flu
   // ---- loop ----
 
   let rafHandle = 0;
-  let lastUpdateTime = Date.now();
+  let lastUpdateTime = performance.now();
   let ambientAccum = 0;
   let nextAmbientDelay = 0.6;
 
-  function calcDeltaTime() {
-    const now = Date.now();
+  function calcDeltaTime(now: number) {
     let dt = (now - lastUpdateTime) / 1000;
     dt = Math.min(dt, 0.016666);
     lastUpdateTime = now;
     return dt;
   }
 
-  function frameLoop() {
-    const dt = calcDeltaTime();
+  function frameLoop(time: number) {
+    const dt = calcDeltaTime(time);
     if (resizeCanvasInternal()) initFramebuffers();
 
     if (config.ambientOnly) {
@@ -1445,8 +1479,9 @@ export function createFluidSim(canvas: HTMLCanvasElement, overrides: Partial<Flu
   }
 
   function start() {
-    lastUpdateTime = Date.now();
-    if (!rafHandle) rafHandle = requestAnimationFrame(frameLoop);
+    if (rafHandle) return;
+    lastUpdateTime = performance.now();
+    rafHandle = requestAnimationFrame(frameLoop);
   }
 
   function stop() {
@@ -1487,7 +1522,9 @@ export function createFluidSim(canvas: HTMLCanvasElement, overrides: Partial<Flu
       checkerboardShader, bloomPrefilterShader, bloomBlurShader, bloomFinalShader,
       sunraysMaskShader, sunraysShader, splatShader, advectionShader, divergenceShader,
       curlShader, vorticityShader, pressureShader, gradientSubtractShader,
-    ].forEach((s) => gl.deleteShader(s));
+    ]
+      .filter((shader): shader is WebGLShader => shader !== null)
+      .forEach((shader) => gl.deleteShader(shader));
 
     const loseContext = gl.getExtension("WEBGL_lose_context");
     loseContext?.loseContext();

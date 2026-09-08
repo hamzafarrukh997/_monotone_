@@ -3,6 +3,7 @@ import { portfolio } from "@/content/portfolio";
 import { routes } from "@/lib/links";
 import { Button } from "@/components/ui/Button";
 import { Link } from "@/components/ui/Link";
+import { CaseStudyArtwork } from "@/components/sections/CaseStudyArtwork";
 
 export function WorkShowcase() {
   const { heading, cta } = home.work;
@@ -33,11 +34,11 @@ export function WorkShowcase() {
         </div>
 
         <ul className="m-0 grid list-none gap-x-5 gap-y-12 p-0 md:grid-cols-2">
-          {portfolio.map((item) => (
+          {portfolio.map((item, index) => (
             <li className="min-w-0" key={item.slug}>
               <Link
                 href={routes.workItem(item.slug)}
-                className="group block text-fg no-underline hover:text-fg"
+                className="group group/work-card block text-fg no-underline hover:text-fg"
                 aria-label={`View ${item.client} project`}
               >
                 <article>
@@ -45,6 +46,10 @@ export function WorkShowcase() {
                     className="relative aspect-[91/64] overflow-hidden rounded-[clamp(1rem,1.25vw,1.5rem)] bg-[#d1d1d1]"
                     aria-hidden="true"
                   >
+                    <CaseStudyArtwork
+                      study={item}
+                      number={String(index + 1).padStart(2, "0")}
+                    />
                     <span className="absolute inset-0 bg-[radial-gradient(circle_at_50%_115%,rgba(255,90,31,0.24),transparent_48%)] opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100" />
                     <span className="absolute inset-[1px] rounded-[inherit] border border-[#2b2b2b]/0 transition-[border-color,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[0.985] group-hover:border-[#2b2b2b]/45" />
                   </div>
