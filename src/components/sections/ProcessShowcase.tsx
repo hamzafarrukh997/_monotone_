@@ -179,7 +179,7 @@ export function ProcessShowcase() {
             aria-hidden="true"
           >
             <div className="process-showcase__active-step flex items-center gap-[1.1rem] lg:items-baseline">
-              <div className="process-showcase__counter flex h-[1em] shrink-0 overflow-hidden font-sans text-process-step font-bold leading-process-step">
+              <div className="process-showcase__counter flex h-[1em] shrink-0 overflow-hidden font-sans text-process-step font-normal leading-process-step">
                 <span>0</span>
                 <span className="process-showcase__reel-window block h-[1em] overflow-hidden">
                   <span
@@ -200,7 +200,7 @@ export function ProcessShowcase() {
                 </span>
               </div>
 
-              <span className="process-showcase__label-window block h-[1em] min-w-[4.5rem] overflow-hidden font-sans text-process-step font-bold leading-process-step min-[35.001rem]:min-w-[5.6rem]">
+              <span className="process-showcase__label-window block h-[1em] min-w-[4.5rem] overflow-hidden font-sans text-process-step font-normal leading-process-step min-[35.001rem]:min-w-[5.6rem]">
                 <span
                   className="process-showcase__label-reel flex flex-col transition-transform duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform motion-reduce:duration-[0.01ms]"
                   style={{
@@ -234,7 +234,7 @@ export function ProcessShowcase() {
                 aria-label={`${step.number} ${step.label}`}
                 key={step.number}
               >
-                <h3 className="process-showcase__title m-0 max-w-[18ch] font-display text-process-title font-normal leading-process-title tracking-process-title lg:max-w-[24ch]">
+                <h3 className="process-showcase__title m-0 max-w-[18ch] font-sans text-process-title font-normal leading-process-title tracking-process-title lg:max-w-[24ch]">
                   <SplitCopy
                     className="process-showcase__title-copy"
                     variant="title"

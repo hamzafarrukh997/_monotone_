@@ -42,7 +42,7 @@ export const site = {
   description:
     "Monotone is a digital agency pairing research-led design, modern web development, and measurable growth marketing.",
   /** Canonical production origin. Swap for the real domain before launch. */
-  url: "https://monotone.agency",
+  url: "https://monotone.digital",
 
   /** Primary header navigation. */
   nav: [
@@ -60,7 +60,7 @@ export const site = {
     servicePrompt: "What can we help you with?",
     serviceOptions: [...services.map((service) => service.title), "Other"],
     budgetPrompt: "What budget range are you considering?",
-    budgetOptions: ["$2k–$5k", "$5k–$10k", "$10k–$25k", "$25k+"],
+    budgetOptions: ["20k–50k", "50k–100k", "100k–200k", "200k+"],
     detailsPrompt: "Your information",
     namePlaceholder: "Your name",
     emailPlaceholder: "Your email",
@@ -110,7 +110,7 @@ export const site = {
   ] satisfies FooterGroup[],
 
   contact: {
-    email: "hello@monotone.agency",
+    email: "hello@monotone.digital",
     whatsapp: "+92 305 4602778",
     location: "Remote — worldwide",
     availability: "Booking new projects for Q4",

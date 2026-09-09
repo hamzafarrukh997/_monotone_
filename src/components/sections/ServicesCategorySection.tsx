@@ -45,7 +45,7 @@ export function ServicesCategorySection({
       <div className="mx-auto grid w-full max-w-[120rem] px-[clamp(1.5rem,2.083vw,2.5rem)] pt-[clamp(5.5rem,6.7vw,8rem)] pb-[clamp(7rem,12vw,14rem)] lg:grid-cols-[minmax(0,0.83fr)_minmax(0,1fr)] lg:gap-x-[9.5%]">
         <h2
           id={headingId}
-          className="whitespace-pre-line font-display text-[clamp(3.25rem,4.167vw,5rem)] leading-none font-normal tracking-[-0.06em] lg:col-start-1 lg:row-start-1"
+          className="whitespace-pre-line font-display text-[clamp(3.25rem,4.7vw,90px)] leading-none font-normal tracking-[-0.06em] lg:col-start-1 lg:row-start-1"
         >
           {heading}
         </h2>
@@ -90,14 +90,14 @@ export function ServicesCategorySection({
                   className="flex min-h-[5.75rem] w-full items-center justify-between gap-6 px-[clamp(1rem,1.667vw,2rem)] py-5 text-left font-sans text-[clamp(1.65rem,1.875vw,2.25rem)] leading-tight font-normal tracking-[-0.06em] transition-colors hover:text-accent"
                 >
                   <span>{item.title}</span>
-                  <span className="grid h-[18px] w-[18px] shrink-0 place-items-center">
-                    <Image
-                      src="/services/accordion-chevron.svg"
-                      alt=""
-                      width={10}
-                      height={15}
-                      className={`h-[15px] w-[10px] transition-transform duration-300 ease-out ${
-                        isOpen ? "rotate-90" : "rotate-0"
+                  <span
+                    aria-hidden="true"
+                    className="relative grid h-8 w-8 shrink-0 place-items-center text-current sm:h-9 sm:w-9"
+                  >
+                    <span className="absolute h-[2.5px] w-[22px] rounded-full bg-current sm:h-[3px] sm:w-[26px]" />
+                    <span
+                      className={`absolute h-[22px] w-[2.5px] rounded-full bg-current transition-transform duration-300 ease-out sm:h-[26px] sm:w-[3px] ${
+                        isOpen ? "scale-y-0" : "scale-y-100"
                       }`}
                     />
                   </span>

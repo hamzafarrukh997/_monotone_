@@ -112,10 +112,28 @@ export function OfferTerms({ offerTitle, summary, terms }: OfferTermsProps) {
         className="offer-card__guarantee"
         aria-haspopup="dialog"
         aria-expanded={isOpen}
+        aria-label={`${summary}. View terms and conditions.`}
         onClick={togglePopup}
       >
-        <span>{summary}</span>
-        <span className="sr-only"> Terms and conditions apply.</span>
+        <span className="offer-card__guarantee-text">{summary}</span>
+        <span className="offer-card__condition-mark" aria-hidden="true">
+          <svg viewBox="0 0 16 16" fill="none" width="100%" height="100%">
+            <circle
+              cx="8"
+              cy="8"
+              r="7.25"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            />
+            <path
+              d="M8 7.1v4.15"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+            <circle cx="8" cy="4.85" r="0.85" fill="currentColor" />
+          </svg>
+        </span>
       </button>
 
       {isRendered

@@ -237,7 +237,7 @@ export function ServicesShowcase() {
           href={routes.services}
           variant="secondary"
           size="lg"
-          className="home-heading-cta h-14 shrink-0 px-8 text-base font-normal"
+          className="home-heading-cta shrink-0 px-8 text-base font-normal"
         >
           <span className="home-heading-cta__label">View all services</span>
         </Button>

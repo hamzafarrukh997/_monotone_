@@ -85,7 +85,7 @@ export const offers: Offer[] = [
     },
     detail: {
       eyebrow: "For new and small businesses",
-      headline: "A website that’s live in a week, not a quarter",
+      headline: "A website that’s live in a week, not months",
       intro:
         "Most small businesses lose months waiting on a website that keeps slipping. Starter exists to end that. A complete, professional site, written, designed, built, and live inside one working week. You get everything a customer needs to find you, trust you, and get in touch, without the long timeline or the agency runaround.",
       includedHeading: "What’s included",

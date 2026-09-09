@@ -182,11 +182,11 @@ export function InsightsIndex({ posts }: InsightsIndexProps) {
             id="insights-heading"
             className="m-0 max-w-[75rem] font-display text-[clamp(3.65rem,7.15vw,8.5rem)] leading-[0.92] font-normal tracking-[-0.075em]"
           >
-            Ideas that make digital work harder<span className="text-accent">.</span>
+            Practical ideas for businesses who want more<span className="text-accent">.</span>
           </h1>
           <p className="mt-8 max-w-[43rem] font-sans text-base leading-[1.55] font-normal text-[#2b2b2b]/72 md:text-lg">
-            Clear thinking on brand, websites, content, and growth—written for
-            people who want useful answers, not another layer of jargon.
+            Straight advice on brand, websites, content, and growth you can
+            actually use.
           </p>
         </div>
       </section>

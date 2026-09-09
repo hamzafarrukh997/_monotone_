@@ -2,20 +2,7 @@
 
 import { site } from "@/content/site";
 import { openProjectRequest } from "@/lib/projectRequest";
-
-function ArrowIcon() {
-  return (
-    <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
-      <path
-        d="M5 12h13m-5-5 5 5-5 5"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.75"
-      />
-    </svg>
-  );
-}
+import { Button } from "@/components/ui/Button";
 
 const footerLinkClass =
   "group relative block w-fit origin-left transition-[transform,color] duration-300 ease-out hover:translate-x-2 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent";
@@ -67,33 +54,29 @@ export function Footer() {
         <div className="relative z-10 mx-auto flex min-h-[38rem] w-full max-w-[120rem] flex-col items-center justify-center px-5 py-20 text-center sm:min-h-[44rem] sm:px-8 sm:py-24 lg:px-10">
           <h2
             id="closing-cta-heading"
-            className="max-w-[16ch] font-display text-[clamp(2.75rem,5.25vw,6rem)] leading-[0.92] font-medium tracking-[-0.065em]"
+            className="max-w-[22ch] font-display text-[clamp(2.75rem,5.25vw,6rem)] leading-[0.92] font-medium tracking-[-0.065em]"
           >
             {cta.heading.before}{" "}
-            <span className="text-white/40">{cta.heading.after}</span>
+            <span className="whitespace-nowrap text-white/40">
+              {cta.heading.after}
+            </span>
           </h2>
 
           <p className="mt-7 max-w-[42rem] font-sans text-base leading-relaxed text-white/60 sm:text-lg">
             {cta.body}
           </p>
 
-          <button
+          <Button
             type="button"
+            variant="secondary"
+            size="lg"
             aria-haspopup="dialog"
             aria-controls="project-request-dialog"
             onClick={openProjectRequest}
-            className="group/button mt-9 inline-flex min-h-14 items-center gap-5 rounded-full bg-white py-3 pl-6 pr-3 font-sans text-sm font-bold text-[#2b2b2b] transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent sm:min-h-16 sm:pl-8 sm:text-base"
+            className="home-heading-cta home-heading-cta--on-dark mt-9 shrink-0 px-8 text-base font-normal"
           >
-            <span>{cta.cta}</span>
-            <span
-              aria-hidden="true"
-              className="grid h-10 w-10 place-items-center rounded-full bg-accent text-[#2b2b2b] transition-transform duration-300 group-hover/button:rotate-45 sm:h-11 sm:w-11"
-            >
-              <span className="h-5 w-5">
-                <ArrowIcon />
-              </span>
-            </span>
-          </button>
+            <span className="home-heading-cta__label">{cta.cta}</span>
+          </Button>
 
           <p className="mt-5 font-sans text-[0.625rem] font-semibold uppercase tracking-[0.12em] text-white/35 sm:text-xs">
             {cta.note}
@@ -139,27 +122,29 @@ export function Footer() {
               {site.cta.label}
             </p>
 
-            <a
-              href={`mailto:${contact.email}`}
-              className="group ml-auto flex w-fit max-w-full items-start gap-3 break-all font-display text-[clamp(1.75rem,2.8vw,3.5rem)] leading-[1.06] tracking-[-0.055em] transition-colors duration-300 hover:text-accent sm:break-normal"
-            >
-              <span className="underline decoration-[0.05em] underline-offset-[0.14em] transition-[text-underline-offset] duration-300 group-hover:underline-offset-[0.22em]">
-                {contact.email}
-              </span>
-              <span
-                aria-hidden="true"
-                className="mt-[0.18em] text-[0.55em] text-accent transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+            <div className="flex flex-col items-start gap-5 lg:items-end">
+              <a
+                href={`mailto:${contact.email}`}
+                className="group inline-flex max-w-full items-center gap-2 break-all font-sans text-base font-semibold transition-colors duration-300 hover:text-accent sm:break-normal sm:text-2xl"
               >
-                ↗
-              </span>
-            </a>
+                <span className="underline decoration-1 underline-offset-4 transition-[text-underline-offset] duration-300 group-hover:underline-offset-[0.35em]">
+                  {contact.email}
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="text-[0.75em] text-accent transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                >
+                  ↗
+                </span>
+              </a>
 
-            <a
-              href={whatsappHref}
-              className="mt-8 inline-block font-sans text-base font-semibold text-accent underline decoration-1 underline-offset-4 transition-opacity hover:opacity-65 sm:text-2xl"
-            >
-              WhatsApp {contact.whatsapp}
-            </a>
+              <a
+                href={whatsappHref}
+                className="inline-flex font-sans text-base font-semibold text-accent underline decoration-1 underline-offset-4 transition-opacity hover:opacity-65 sm:text-2xl"
+              >
+                WhatsApp {contact.whatsapp}
+              </a>
+            </div>
 
             {/* <p className="mt-5 font-sans text-sm leading-relaxed sm:ml-auto sm:max-w-[28rem] sm:text-base">
               {contact.availability}
@@ -183,14 +168,13 @@ export function Footer() {
             </span>
           </a>
 
-          <div className="mt-8 grid gap-4 border-t border-white/25 pt-5 font-sans text-xs font-semibold uppercase tracking-[0.04em] text-[#f2eee9]/80 sm:grid-cols-2 sm:text-sm lg:grid-cols-3">
+          <div className="mt-8 grid gap-4 border-t border-white/25 pt-5 font-sans text-xs font-semibold uppercase tracking-[0.04em] text-[#f2eee9]/80 sm:grid-cols-2 sm:text-sm">
             <p>© {site.name}</p>
-            <p className="sm:text-right lg:text-center">{contact.location}</p>
 
             {legalGroup ? (
               <nav
                 aria-label={`${legalGroup.title} footer navigation`}
-                className="sm:col-span-2 lg:col-span-1"
+                className="sm:justify-self-end"
               >
                 <ul className="flex flex-wrap gap-x-4 gap-y-2 sm:justify-end">
                   {legalGroup.items.map((item) => (

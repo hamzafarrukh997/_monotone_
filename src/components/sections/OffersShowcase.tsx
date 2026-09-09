@@ -104,7 +104,7 @@ export function OffersShowcase() {
             href={sectionCta.href}
             variant="secondary"
             size="lg"
-            className="home-heading-cta h-14 shrink-0 px-8 text-base"
+            className="home-heading-cta shrink-0 px-8 text-base"
           >
             <span className="home-heading-cta__label">{sectionCta.label}</span>
           </Button>

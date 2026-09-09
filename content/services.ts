@@ -77,24 +77,25 @@ export const servicesPage = {
   },
   design: {
     heading: "Design",
-    intro: "How your business looks — and whether people take it seriously",
+    intro:
+      "We handle design from the ground up. First your brand identity, then the structure of your website, then what every page looks like across devices. Each stage has its own deliverables and review cycle, and nothing moves forward without your sign-off. The process is the same whether you need a full brand built from scratch or a redesign that keeps your existing identity intact.",
     learnMoreLabel: "Learn More",
     learnMoreHref: "/services/design",
     image: "/images/service/service-design-banner.avif",
     items: [
       {
         title: "Brand Identity",
-        body: "Placeholder copy for the complete visual system behind your business — from logo and colour to typography and the rules that keep every touchpoint consistent.",
+        body: "Your brand identity covers logo, color palette, typography, and usage guidelines. We build these as a connected system, not separate pieces, so they work together across your website, social media, print, and anywhere else your brand shows up. You get organized final files in every format you'll need, with clear guidelines so nothing gets misused. Already have a brand that just needs tightening? We work with what exists.",
         cta: "Explore",
       },
       {
         title: "UI Design",
-        body: "Placeholder copy for clear, polished interfaces that feel intuitive to use and stay visually consistent across every screen and interaction.",
+        body: "Once the structure is locked, we design what every page actually looks like. Layouts, buttons, colors, spacing, imagery, how everything adapts from desktop to tablet to mobile. Each screen is designed individually, not stretched or shrunk from a single template. You see full mockups before any development begins, with rounds of revision built in. What you approve is exactly what gets built. No gaps between the mockup and the final website.",
         cta: "Explore",
       },
       {
         title: "UX Design",
-        body: "Placeholder copy for user journeys, structure, and prototypes that make complex products easier to understand and simpler to navigate.",
+        body: "Before any visual design starts, we map out the full structure of your website. What pages are needed, how they connect, where visitors enter, what path they follow toward contacting you or making a purchase. Every page gets a clear purpose and a deliberate position in the sequence. You review and approve the structure before we move into interface design, so there are no surprises later. Changes at this stage are fast and cheap compared to reworking a finished design.",
         cta: "Explore",
       },
     ],
@@ -102,34 +103,34 @@ export const servicesPage = {
   development: {
     heading: "Development",
     intro:
-      "Fast, accessible, maintainable websites and digital platforms built around your content, your customers, and the way your business needs to grow.",
+      "Every site we build runs on WordPress. Development follows directly from the approved design, so what was signed off is what gets built. The code, the content management system, the integrations with the tools your business runs on, all of it is set up, tested across browsers and devices, and documented before launch. Once live, you get a full walkthrough of how to manage your content yourself.",
     learnMoreLabel: "Learn More",
     learnMoreHref: "/services/web-development",
     image: "/images/service/service-dev-banner.avif",
     items: [
       {
         title: "Website Development",
-        body: "Fast, accessible marketing sites and web applications engineered around your goals, content, and customers.",
+        body: "Your approved designs become a working website. Frontend, backend, everything in between. Every page is built to work smoothly across screen sizes, browsers, and devices. Animations and interactions are implemented exactly as designed, not approximated. We don't use pre-built themes or off-the-shelf templates. The codebase is clean, documented, and built so any developer who works on it after us can pick up without guesswork.",
         cta: "Explore",
       },
       {
         title: "CMS & Content Setup",
-        body: "Flexible content systems and clear editing workflows that let your team publish and update the site with confidence.",
+        body: "WordPress gets configured so you can update your own content without touching code. Your page builder, media library, menu structure, every piece of content on the site (text, images, videos, downloads) is populated and formatted before launch, not handed to you half-finished. You get a walkthrough of how to make updates yourself, so you're not dependent on us for every small change.",
         cta: "Explore",
       },
       {
         title: "Integrations",
-        body: "Reliable connections between your website, APIs, analytics, CRM, payments, and the tools that keep your business moving.",
+        body: "Your website connects to the tools your business already uses. WhatsApp, CRM systems, email marketing platforms, booking systems, live chat, payment gateways. Each integration is configured and tested to make sure data flows correctly between your site and your external systems. If something needs a custom connection that doesn't exist out of the box, we build it. You get documentation for every integration: what's connected, how it works, where to find it.",
         cta: "Explore",
       },
       {
         title: "Hosting & Launch",
-        body: "Production hosting, deployment, redirects, analytics, and launch-day checks handled as one coordinated release.",
+        body: "Getting your site live means domain configuration, hosting environment, SSL certificates, DNS records, and deployment. Everything is configured for security, speed, and reliability before the site goes public. We run a pre-launch checklist covering broken links, mobile responsiveness, form submissions, and page load times. Once live, we monitor the first 48 hours to catch anything that needs immediate attention. You receive full credentials and access to everything we've set up.",
         cta: "Explore",
       },
       {
         title: "E-commerce",
-        body: "Thoughtful storefronts and checkout experiences that make products easy to discover, manage, and buy.",
+        body: "Online stores are built using WooCommerce on WordPress. Product catalogue setup, payment processing, shipping configuration, tax settings, order management workflows. Every product page is set up with the right images, descriptions, variations, and pricing. Checkout is tested end-to-end to make sure customers can pay without friction. You get a walkthrough of how to manage orders, add products, update pricing, and handle refunds, so day-to-day operations don't need a developer.",
         cta: "Explore",
       },
     ],
@@ -137,34 +138,34 @@ export const servicesPage = {
   growthMarketing: {
     heading: "Growth Marketing",
     intro:
-      "Compounding, measurable growth through search, content, paid campaigns, and clear reporting — all working together as one connected system.",
+      "The marketing side covers everything that drives traffic to your website and turns that traffic into enquiries, calls, and sales. Search engine optimisation, paid advertising, content creation, analytics, conversion improvements. Every channel we manage comes with clear reporting so you can see what's working, what's not, and where your money is going. No budget gets spent without a plan you've reviewed and signed off on first.",
     learnMoreLabel: "Learn More",
     learnMoreHref: "/services/growth-marketing",
     image: "/images/service/service-growth-banner.avif",
     items: [
       {
         title: "SEO",
-        body: "Technical, on-page, and content SEO that helps the right people discover your business and keeps organic visibility growing over time.",
+        body: "Your website gets optimised to rank higher in Google for the terms your customers are actually searching for. On-page work covers page titles, meta descriptions, heading structure, and internal linking. Technical SEO fixes and local SEO setup, including your Google Business Profile, are part of the process. Every change is documented and tracked. You receive regular reports showing which keywords you're ranking for, how positions are changing, and where the next opportunities are.",
         cta: "Explore",
       },
       {
         title: "Content & Copywriting",
-        body: "Clear positioning and useful content that makes your value easier to understand and gives people a reason to take the next step.",
+        body: "The content your website needs to communicate clearly, rank in search engines, and convert visitors into enquiries. Website copy, blog posts, SEO-focused articles, brand messaging. Every piece is written to match your brand's voice and your audience's language, not stuffed with keywords or padded with filler. You review and approve everything before it goes live. Existing content that needs tightening rather than replacing? We work with what's there.",
         cta: "Explore",
       },
       {
         title: "Paid Advertising",
-        body: "Focused paid campaigns built around the audiences, messages, and landing experiences most likely to convert.",
+        body: "Campaigns on Google Ads and Meta, set up and managed from start to finish. Ad creation, audience targeting, budget allocation, campaign tracking. Every campaign is built around a specific goal: enquiries, bookings, purchases, or traffic to a landing page. You approve the budget and creative before anything goes live. Reporting is straightforward. What was spent, what it generated, what we're adjusting next. No dashboards you can't read.",
         cta: "Explore",
       },
       {
         title: "Analytics & Reporting",
-        body: "Clean tracking and concise reporting that show what is working, what is not, and where the next opportunity sits.",
+        body: "Google Analytics 4, conversion tracking, and monthly performance dashboards, configured so you can see exactly how your website is performing. Visitor numbers, traffic sources, goal completions, user behaviour patterns. Every metric we track is tied to something that matters to your business: enquiries, form submissions, phone calls, purchases. Reports are delivered in plain language with clear explanations of what the numbers mean and what we recommend doing about them.",
         cta: "Explore",
       },
       {
-        title: "Conversion Rate Optimisation",
-        body: "Evidence-led improvements to journeys, pages, and calls to action that turn more of your existing traffic into meaningful results.",
+        title: "Conversion Optimisation",
+        body: "How visitors behave on your website tells us where they're dropping off and why. We make targeted changes to increase the percentage that take action, whether that's submitting a form, making a call, or completing a purchase. A/B testing, landing page improvements, form and call-to-action adjustments, user behaviour analysis using heatmaps and session recordings. Every change is tested against a control before it becomes permanent. You see the data behind every recommendation.",
         cta: "Explore",
       },
     ],
@@ -172,34 +173,34 @@ export const servicesPage = {
   maintenance: {
     heading: "Maintenance\n& Support",
     intro:
-      "Ongoing technical care that keeps your website secure, current, fast, and dependable long after the initial launch.",
+      "After launch, your website needs to stay secure, up to date, and running properly. Updates, backups, security monitoring, performance checks, content changes, all on an ongoing basis. Issues are caught early through automated monitoring, not after a customer reports a broken page. Every task we perform is logged and reported. Whether you need a small text change or an emergency fix at short notice, there's a clear process for requesting it and a defined timeframe for completion.",
     learnMoreLabel: "Learn More",
     learnMoreHref: "/services/maintenance-support",
     image: "/images/service/service-maintenance-banner.avif",
     items: [
       {
         title: "Security & Updates",
-        body: "Routine platform, dependency, and security updates handled carefully to keep your site protected and stable.",
+        body: "Your WordPress installation, plugins, and theme files are kept up to date with security patches applied as they're released. Every update is tested in a staging environment before it touches your live site, so nothing breaks unexpectedly. Regular malware scans and vulnerability monitoring run in the background. If a security issue is detected, we act on it immediately, not at the next scheduled window. You receive a log of every update applied: what was done and when.",
         cta: "Explore",
       },
       {
         title: "Backups & Monitoring",
-        body: "Automated backups and proactive monitoring that help us spot issues early and recover quickly when something goes wrong.",
+        body: "Automated daily backups of your entire website, files and database, stored securely off-site. Your site is monitored around the clock for uptime, and you're alerted immediately if it goes down. Restoring from a backup is fast and tested regularly to make sure it actually works when needed. You always have access to your backup history, and we retain enough restore points to roll back to any recent version.",
         cta: "Explore",
       },
       {
         title: "Performance Checks",
-        body: "Regular speed, accessibility, and technical health reviews to keep the experience smooth as your site and content evolve.",
+        body: "Regular speed audits and Core Web Vitals monitoring. These are the metrics Google uses to assess loading speed, responsiveness, and visual stability. When performance drops, we identify the cause and fix it, whether that's bloated images, unoptimised code, slow plugins, or a database that needs cleaning. Every fix is documented with before-and-after measurements. The goal is a site that stays fast consistently, not just on launch day.",
         cta: "Explore",
       },
       {
         title: "Content Updates",
-        body: "Reliable help publishing new pages, refreshing existing content, and keeping important information accurate across the site.",
+        body: "The day-to-day content changes your website needs. Updating text, swapping images, adding new pages, adjusting menus, editing layouts. Every change request follows a simple process: you tell us what needs updating, we make the change, you review it before it goes live. Turnaround times are defined in your support plan so you know exactly when to expect completion. This covers routine updates, not full redesigns. Those are scoped as separate projects.",
         cta: "Explore",
       },
       {
-        title: "Bug Fixes & Troubleshooting",
-        body: "Practical diagnosis and repair when something breaks, behaves unexpectedly, or needs a dependable technical pair of hands.",
+        title: "Bug Fixes",
+        body: "When something breaks, a form that stops submitting, a layout that looks wrong on certain browsers, a feature that worked yesterday and doesn't today, we diagnose it and fix it. Cross-browser display problems, mobile rendering issues, plugin conflicts, broken functionality. Emergency support is available for critical failures that affect your ability to take enquiries or process orders. Every fix is tested and documented, and we flag recurring issues that point to deeper problems worth addressing.",
         cta: "Explore",
       },
     ],
@@ -207,29 +208,39 @@ export const servicesPage = {
   faq: {
     heading: {
       before: "Your ",
-      accent: "service questions,",
+      accent: "questions,",
       after: " answered",
     },
     items: [
       {
         question: "Can I hire you for just one service?",
         answer:
-          "Yes. You can bring us in for a focused piece of work such as brand identity, UX and UI design, development, SEO, or ongoing support. We will recommend a broader scope only when another part is essential to making that work successful.",
+          "Yes. Brand identity, UX and UI, development, SEO, or ongoing support are each a standalone piece of work. We'll only suggest adding another part if the first won't work well without it, and we'll tell you why first.",
       },
       {
-        question: "What is included in website development?",
+        question: "Will I be locked in or dependent on you?",
         answer:
-          "Website development can include the front-end build, CMS and content setup, third-party integrations, e-commerce, hosting, analytics, quality assurance, and launch. The exact scope is agreed before work begins.",
+          "No. You get full credentials, access to everything we set up, and a walkthrough so you can manage your own content without touching code. Move to another developer whenever you like: the codebase is clean and documented. You own it, not us.",
       },
       {
-        question: "Can you improve an existing website?",
+        question: "Can you work with my existing website?",
         answer:
-          "Absolutely. We can audit an existing site, redesign selected journeys, improve performance and accessibility, rebuild problem areas, strengthen SEO, or take over its ongoing maintenance without requiring a complete restart.",
+          "Yes. We tighten what's there rather than rebuild from scratch, whether that's your brand, page structure, copy, or SEO. If a rebuild would actually cost less than patching, we'll say so. You won't be pushed into a redesign you don't need.",
       },
       {
-        question: "How do maintenance and growth support work after launch?",
+        question: "What do I get before the site goes live?",
         answer:
-          "We can stay involved with updates, monitoring, backups, bug fixes, content changes, SEO, campaigns, conversion improvements, and reporting. The ongoing plan is shaped around the level of support your team actually needs.",
+          "Nothing half-finished. Content is populated, integrations like WhatsApp are tested, and we run a full pre-launch checklist. We watch the first 48 hours live to catch anything early. What you approved in the mockup is what ships.",
+      },
+      {
+        question: "Will I understand your marketing reports?",
+        answer:
+          "Yes. Plain-language reports, not dashboards you can't read. For ads: what was spent, what it made, what's changing next. For SEO: your rankings, how they're moving, and the next opportunity. No budget goes out without a plan you've signed off.",
+      },
+      {
+        question: "What if something breaks after launch?",
+        answer:
+          "Downtime costs you money, so we try to catch problems before you do. Monitoring watches your site around the clock, serious issues get emergency priority, and daily off-site backups mean the worst case is a quick roll-back, not days offline.",
       },
     ],
   },
@@ -244,7 +255,7 @@ export const services: ServiceCategory[] = [
     cardImage: "/images/home/service/service-design.avif",
     detailHero: {
       intro:
-        "How your business looks — and whether people take it seriously. We shape the identity, structure, and interface behind a clear, credible digital experience, so every touchpoint feels considered and unmistakably yours.",
+        "At Monotone, design is handled from the ground up. First your brand identity, then the structure of your website, then what every page looks like across devices. Each stage has its own deliverables and review cycle, and nothing moves forward without your sign-off. The process is the same whether you need a full brand built from scratch or a redesign that keeps your existing identity intact.",
       featuredSubService: "brand-identity",
       image: "/images/service/design/service-design-banner.avif",
     },
@@ -260,8 +271,8 @@ export const services: ServiceCategory[] = [
           "Brand Guidelines Document",
         ],
         body: [
-          "Your brand identity is how your business looks and feels everywhere it shows up — your website, your social media, your business cards, your invoices. We start with your logo, then build out from there: a colour palette that belongs to you, typography that fits your tone, and clear direction on the kind of imagery your brand should use.",
-          "Everything gets documented in a brand guidelines file — a single reference that keeps your business looking consistent no matter who's designing for you next. If you already have a logo you're happy with, we work with it. If you need one from scratch or yours needs a rethink, we build it. Either way, nothing leaves without a system behind it.",
+          "Your brand identity covers logo, colour palette, typography, and usage guidelines. We build these as a connected system, not separate pieces, so they work together across your website, social media, print, and anywhere else your brand shows up.",
+          "You get organised final files in every format you'll need, with clear guidelines so nothing gets misused. Already have a brand that just needs tightening? We work with what exists.",
         ],
         mediaLabel: "Brand identity project media",
         image: "/images/service/design/design-brand-banner.avif",
@@ -281,8 +292,8 @@ export const services: ServiceCategory[] = [
           "Wireframing",
         ],
         body: [
-          "UX design is the planning that happens before anything gets designed on screen. It's where we figure out what pages your site needs, how they connect to each other, and what order visitors see things in. We map out the path from someone landing on your site to them picking up the phone or filling out a form — and we remove anything that gets in the way.",
-          "This includes deciding what goes on each page, where it sits, and how much attention it gets. The goal is straightforward: when someone visits your site, they shouldn't have to think about where to go next. The structure does that work for them. Design follows this plan — not the other way around.",
+          "Before any visual design starts, we map out the full structure of your website. What pages are needed, how they connect, where visitors enter, what path they follow toward contacting you or making a purchase.",
+          "Every page gets a clear purpose and a deliberate position in the sequence. You review and approve the structure before we move into interface design, so there are no surprises later. Changes at this stage are fast and cheap compared to reworking a finished design.",
         ],
         mediaLabel: "UX design project media",
         image: "/images/service/design/design-ux-banner.avif",
@@ -302,8 +313,8 @@ export const services: ServiceCategory[] = [
           "Iconography & Graphics",
         ],
         body: [
-          "UI design is what your website actually looks and feels like — the colours, the buttons, the layout, the spacing, the visual tone. Once the structure is planned in UX, this is where it comes to life on screen. We design every page your site needs, making sure it looks right on desktop, tablet, and mobile.",
-          "Every button, form, image, and section gets styled so the whole site feels like one consistent experience. We also set the visual direction — whether that's clean and minimal, bold and colourful, or something else entirely. Nothing is left to guesswork for the developer. Every page, every state, every screen size gets designed before a single line of code is written.",
+          "Once the structure is locked, we design what every page actually looks like. Layouts, buttons, colours, spacing, imagery, how everything adapts from desktop to tablet to mobile. Each screen is designed individually, not stretched or shrunk from a single template.",
+          "You see full mockups before any development begins, with rounds of revision built in. What you approve is exactly what gets built. No gaps between the mockup and the final website.",
         ],
         mediaLabel: "UI design project media",
         image: "/images/service/design/design-ui-banner.avif",
@@ -316,29 +327,34 @@ export const services: ServiceCategory[] = [
     faq: {
       heading: {
         before: "Your ",
-        accent: "design questions,",
+        accent: "questions,",
         after: " answered",
       },
       items: [
         {
           question: "Can you work with our existing brand identity?",
           answer:
-            "Yes. We can build from the identity you already have, refine the parts that are holding it back, or create a new system when the current direction no longer fits. We begin by reviewing what is useful, recognisable, and worth carrying forward.",
+            "Yes. We build from what you have, fix what's holding it back, or start fresh when the current direction no longer fits. We begin by checking what's worth keeping.",
         },
         {
-          question: "What is the difference between UX and UI design?",
+          question: "What do we receive at the end of design?",
           answer:
-            "UX design plans how the experience works: the page structure, journeys, priorities, and actions. UI design determines how that plan looks and feels through typography, colour, spacing, components, and responsive layouts. They work together, but they solve different problems.",
+            "The approved design files, plus the system to keep using them: brand guidelines, responsive page designs, reusable components, interaction states, and developer-ready specs. Exactly which depends on the scope.",
         },
         {
-          question: "Will the designs cover mobile and tablet screens?",
+          question: "How involved do we need to be?",
           answer:
-            "Yes. Responsive behaviour is considered throughout the process. We design the key desktop, tablet, and mobile layouts, define how components adapt between screen sizes, and remove ambiguity before development begins.",
+            "Only at the decisions: reviewing structure, approving the look, signing off on pages. We handle everything in between.",
         },
         {
-          question: "What will we receive at the end of the design phase?",
+          question: "What if we don't like the first designs?",
           answer:
-            "You will receive the approved design files and the supporting system needed to use them consistently. Depending on the scope, that can include brand guidelines, responsive page designs, reusable components, interaction states, prototypes, and developer-ready specifications.",
+            "Every phase includes revisions. We review together, you tell us what's wrong, we adjust. Nothing moves to development until you've approved it.",
+        },
+        {
+          question: "Do you also build the website after designing it?",
+          answer:
+            "Yes. The same team designs and builds, so nothing gets lost in the handoff. Every page, state, and screen size is specced before code starts.",
         },
       ],
     },
@@ -372,7 +388,7 @@ export const services: ServiceCategory[] = [
     cardImage: "/images/home/service/service-dev.avif",
     detailHero: {
       intro:
-        "Fast, accessible, maintainable websites and web apps built around your content, your customers, and the way your business needs to grow.",
+        "Every Monotone site is built from scratch. Development follows directly from the approved design, so what was signed off is what gets built. The code, the content management system, the integrations with the tools your business runs on, all of it is set up, tested across browsers and devices, and documented before launch. Once live, you get a full walkthrough of how to manage your content yourself.",
       featuredSubService: "website-development",
       image: "/images/service/dev/dev-banner.avif",
     },
@@ -388,8 +404,8 @@ export const services: ServiceCategory[] = [
           "Speed & Performance",
         ],
         body: [
-          'This is the actual build — turning your approved designs into a working website. Frontend development handles everything the visitor sees: layouts, buttons, forms, animations. Backend development covers everything behind the scenes: databases, server logic, user accounts, anything that processes data. Responsive development makes sure the whole thing works properly on every screen size — not just "looks okay on mobile" but actually functions well.',
-          "If your site needs movement — scroll animations, hover effects, interactive elements — that gets built here too. We also build with speed in mind from the start, so your site loads fast without needing fixes later. Every site is built to match your design exactly. No off-the-shelf templates, no cutting corners.",
+          "Your approved designs become a working website. Frontend, backend, everything in between. Every page is built to work smoothly across screen sizes, browsers, and devices. Animations and interactions are implemented exactly as designed, not approximated.",
+          "We don't use pre-built themes or off-the-shelf templates. The codebase is clean, documented, and built so any developer who works on it after us can pick up without guesswork.",
         ],
         mediaLabel: "Web development project media",
         image: "/images/service/dev/dev-web-banner.avif",
@@ -409,7 +425,8 @@ export const services: ServiceCategory[] = [
           "User Roles & Access",
         ],
         body: [
-          "Once your site is built, it needs a system behind it so you can manage your own content without calling a developer every time something changes. We set up WordPress as your content management system, configure a page builder so you can make basic edits yourself, and populate every page with your actual content — text, images, videos, documents. We organise your media library so files are easy to find, and set up user accounts with the right access levels if multiple people need to log in. By the time we hand it over, everything is in place and you know how to use it. You're not locked out of your own website.",
+          "Your content management system gets configured so you can update your own content without touching code. Your page builder, media library, menu structure, every piece of content on the site (text, images, videos, downloads) is populated and formatted before launch, not handed to you half-finished.",
+          "You get a walkthrough of how to make updates yourself, so you're not dependent on us for every small change.",
         ],
         mediaLabel: "CMS and content setup project media",
         image: "/images/service/dev/dev-cms-banner.avif",
@@ -429,7 +446,8 @@ export const services: ServiceCategory[] = [
           "Payment Gateways",
         ],
         body: [
-          "Your website doesn't work in isolation — it needs to talk to the other tools your business runs on. We connect your site to the platforms that matter: WhatsApp for instant customer enquiries, a CRM to track your leads, email marketing tools to stay in touch with your list, booking systems so customers can schedule appointments directly, and payment gateways so you can take money online. Each integration is tested to make sure data flows correctly — so when someone fills out a form on your site, it actually ends up where it needs to. We work with the tools you already use wherever possible, and recommend alternatives when something better exists for your setup.",
+          "Your website connects to the tools your business already uses. WhatsApp, CRM systems, email marketing platforms, booking systems, live chat, payment gateways. Each integration is configured and tested to make sure data flows correctly between your site and your external systems.",
+          "If something needs a custom connection that doesn't exist out of the box, we build it. You get documentation for every integration: what's connected, how it works, where to find it.",
         ],
         mediaLabel: "Website integrations project media",
         image: "/images/service/dev/dev-integration-banner.avif",
@@ -449,7 +467,8 @@ export const services: ServiceCategory[] = [
           "Post-Launch Checks",
         ],
         body: [
-          "Getting your site live involves more than pressing a button. We handle the full technical setup: connecting your domain name, configuring your hosting environment, installing SSL certificates so your site is secure, and deploying everything to the live server. DNS settings are configured so your domain points to the right place and your email routing stays intact. Before anything goes public, we run a full round of checks — broken links, missing images, form submissions, mobile display, load speed. Once everything passes, the site goes live and we confirm it's working across devices and browsers. If you don't have a domain or hosting yet, we recommend what to get and where to get it.",
+          "Getting your site live means domain configuration, hosting environment, SSL certificates, DNS records, and deployment. Everything is configured for security, speed, and reliability before the site goes public. We run a pre-launch checklist covering broken links, mobile responsiveness, form submissions, and page load times.",
+          "Once live, we monitor the first 48 hours to catch anything that needs immediate attention. You receive full credentials and access to everything we've set up.",
         ],
         mediaLabel: "Hosting and launch project media",
         image: "/images/service/dev/dev-hosting-banner.avif",
@@ -469,7 +488,8 @@ export const services: ServiceCategory[] = [
           "Single-Page Builds",
         ],
         body: [
-          "Not every project needs a full website. Sometimes you need a single focused page — for a product launch, an ad campaign, an event, or just to capture leads while your main site is being built. We design and build standalone landing pages and microsites that work on their own, with their own domain if needed. Each one is built around one clear action: fill out a form, make a call, register, book. No distractions, no unnecessary navigation, no content that doesn't serve that goal. These pages are also useful for testing — if you want to try a new offer or audience before committing to a full site, a landing page lets you do that quickly and cheaply.",
+          "Online stores are built with a full e-commerce setup. Product catalogue setup, payment processing, shipping configuration, tax settings, order management workflows. Every product page is set up with the right images, descriptions, variations, and pricing. Checkout is tested end-to-end to make sure customers can pay without friction.",
+          "You get a walkthrough of how to manage orders, add products, update pricing, and handle refunds, so day-to-day operations don't need a developer.",
         ],
         mediaLabel: "Landing page project media",
         image: "/images/service/dev/dev-pages-banner.avif",
@@ -482,29 +502,44 @@ export const services: ServiceCategory[] = [
     faq: {
       heading: {
         before: "Your ",
-        accent: "development questions,",
+        accent: "questions,",
         after: " answered",
       },
       items: [
         {
-          question: "Can you build from designs we already have?",
+          question: "How long does a website take to build?",
           answer:
-            "Yes. We can develop from completed Figma files or another established design system. We review the designs before development begins, flag any missing responsive states or interactions, and agree on how those details should behave before they reach the build.",
+            "It depends on scope. Once we've gone through what you need, we commit to a timeline before the build starts, so you have a date to hold us to. A small site moves fast, a larger custom build takes longer.",
+        },
+        {
+          question: "How much does a website cost?",
+          answer:
+            "It depends on the site. Most work fits one of our packages: Starter for a fast launch, Complete for a bigger custom build, Support for ongoing monthly work. Tell us what you need and we'll point you to the right fit or scope a custom quote.",
+        },
+        {
+          question: "How involved do we need to be?",
+          answer:
+            "Less than you might expect. We need your content, your brand assets, and your sign-off at two points: the design approval and the pre-launch review. Between those, running the build is on us, not you.",
+        },
+        {
+          question: "What if we're not happy with the result?",
+          answer:
+            "We build to the design you approved, then you review the result. If something doesn't match or doesn't feel right, we fix it. Revisions carry on against the approved design until you sign off, as long as changes stay within the agreed scope.",
+        },
+        {
+          question: "What do we get at launch?",
+          answer:
+            "Hosting, domain and DNS, SSL, deployment, redirects, forms, and analytics, all set up and checked. You get full credentials and access to everything, so the site is yours and not locked to us. We also confirm it works across devices before calling it done.",
         },
         {
           question: "Will we be able to update the website ourselves?",
           answer:
-            "Yes. When content management is part of the scope, we configure the CMS around the content your team actually needs to change. We also organise editing permissions and provide a clear handover so routine updates do not require a developer.",
+            "Yes. When content management is part of the scope, we set the CMS up around the parts your team actually changes, sort out editing permissions, and give you a proper handover. Day to day updates won't need us.",
         },
         {
-          question: "How do you make sure the website is fast and responsive?",
+          question: "Are we on our own after launch?",
           answer:
-            "Performance and responsive behaviour are considered throughout development rather than added at the end. We optimise assets and code, test the layouts across common screen sizes, and check loading speed, accessibility, forms, and interactions before launch.",
-        },
-        {
-          question: "What is included when the website goes live?",
-          answer:
-            "We handle the agreed hosting setup, domain and DNS configuration, SSL, deployment, redirects, forms, analytics, and final quality checks. After launch, we confirm the live site is working across devices and can continue with maintenance and support if needed.",
+            "No. You get full access plus a walkthrough of how to manage the site yourself, so you're not dependent on anyone. If you'd rather hand off the upkeep, our Support package covers updates, backups, security, and fixes every month.",
         },
       ],
     },
@@ -550,7 +585,7 @@ export const services: ServiceCategory[] = [
     cardImage: "/images/home/service/service-growth.avif",
     detailHero: {
       intro:
-        "Compounding, measurable growth through search, content, and analytics — planned as one connected system and improved with clear evidence.",
+        "Monotone handles the marketing that drives traffic to your website and turns that traffic into enquiries, calls, and sales. Search engine optimisation, paid advertising, content creation, analytics, conversion improvements. Every channel we manage comes with clear reporting so you can see what's working, what's not, and where your money is going. No budget gets spent without a plan you've reviewed and signed off on first.",
       featuredSubService: "seo",
       image: "/images/service/marketing/marketing-banner.avif",
     },
@@ -566,7 +601,8 @@ export const services: ServiceCategory[] = [
           "Keyword Research",
         ],
         body: [
-          "SEO is how your website gets found on Google without paying for ads. We work on three levels: on-page optimisation makes sure your content is structured so search engines understand what each page is about. Technical SEO covers site speed, mobile-friendliness, crawlability, and the code-level details that affect your ranking. Local SEO makes sure your business shows up when someone nearby searches for what you do — that includes setting up and optimising your Google Business Profile, the listing that appears on Google Maps and in local results. We also handle keyword research upfront to make sure you're targeting the terms your actual customers are searching for, not just the ones that sound right to you.",
+          "Your website gets optimised to rank higher in Google for the terms your customers are actually searching for. On-page work covers page titles, meta descriptions, heading structure, and internal linking. Technical SEO fixes and local SEO setup, including your Google Business Profile, are part of the process. Every change is documented and tracked.",
+          "You receive regular reports showing which keywords you're ranking for, how positions are changing, and where the next opportunities are.",
         ],
         mediaLabel: "SEO project media",
         image: "/images/service/marketing/marketing-seo-banner.avif",
@@ -586,7 +622,8 @@ export const services: ServiceCategory[] = [
           "Email & Campaign Copy",
         ],
         body: [
-          "Good design means nothing if the words on the page don't do their job. We write the copy your business needs — from the main pages of your website to blog posts that bring in search traffic over time. Every piece of content is written with two readers in mind: the person visiting your site and the search engine deciding whether to show it. Brand messaging work defines how your business sounds — your tone, your language, the way you talk about what you do — so everything stays consistent whether it's a homepage headline or a follow-up email. If you already have content, we edit and restructure it. If you're starting from nothing, we write it.",
+          "The content your website needs to communicate clearly, rank in search engines, and convert visitors into enquiries. Website copy, blog posts, SEO-focused articles, brand messaging. Every piece is written to match your brand's voice and your audience's language, not stuffed with keywords or padded with filler.",
+          "You review and approve everything before it goes live. Existing content that needs tightening rather than replacing? We work with what's there.",
         ],
         mediaLabel: "Content and copywriting project media",
         image: "/images/service/marketing/marketing-content-banner.avif",
@@ -606,7 +643,8 @@ export const services: ServiceCategory[] = [
           "Campaign Tracking & Reporting",
         ],
         body: [
-          "Paid advertising puts your business in front of the right people immediately — no waiting months for organic traffic to build. We set up and manage campaigns on Google Ads and Meta (Facebook and Instagram), starting with a clear plan: who you're targeting, what you're offering, and what a successful campaign looks like at your budget. We handle the ad creative, the copy, the audience targeting, and the tracking that shows you exactly what your money is doing. Every campaign gets ongoing monitoring and adjustments — not a set-and-forget setup. You get regular reports showing what's working, what isn't, and what we're changing next. No vanity metrics. No dashboards full of numbers you can't act on.",
+          "Campaigns on Google Ads and Meta, set up and managed from start to finish. Ad creation, audience targeting, budget allocation, campaign tracking. Every campaign is built around a specific goal: enquiries, bookings, purchases, or traffic to a landing page.",
+          "You approve the budget and creative before anything goes live. Reporting is straightforward. What was spent, what it generated, what we're adjusting next. No dashboards you can't read.",
         ],
         mediaLabel: "Paid advertising project media",
         image: "/images/service/marketing/marketing-ads-banner.avif",
@@ -626,7 +664,8 @@ export const services: ServiceCategory[] = [
           "Data-Driven Recommendations",
         ],
         body: [
-          "You can't improve what you're not measuring. We set up Google Analytics on your site so you know exactly what's happening — how many people visit, where they come from, what pages they look at, and what they do before they leave. Conversion tracking tells you which visitor actions matter most: form submissions, phone calls, WhatsApp clicks, bookings. We configure goals and events so these are counted automatically. Every month, you get a clear performance dashboard — not a spreadsheet full of numbers, but a readable report that shows what's working and what needs attention. We include recommendations based on the data, so the numbers actually lead to decisions instead of just sitting in a report no one opens.",
+          "Google Analytics 4, conversion tracking, and monthly performance dashboards, configured so you can see exactly how your website is performing. Visitor numbers, traffic sources, goal completions, user behaviour patterns. Every metric we track is tied to something that matters to your business: enquiries, form submissions, phone calls, purchases.",
+          "Reports are delivered in plain language with clear explanations of what the numbers mean and what we recommend doing about them.",
         ],
         mediaLabel: "Analytics and reporting project media",
         image: "/images/service/marketing/marketing-analytics-banner.avif",
@@ -637,7 +676,7 @@ export const services: ServiceCategory[] = [
       },
       {
         slug: "conversion-rate-optimisation",
-        title: "Conversion Rate Optimisation",
+        title: "Conversion Optimisation",
         capabilities: [
           "A/B Testing",
           "Landing Page Optimisation",
@@ -646,7 +685,8 @@ export const services: ServiceCategory[] = [
           "Enquiry Flow Audits",
         ],
         body: [
-          "Getting traffic to your site is only half the job — the other half is making sure that traffic actually does something. Conversion rate optimisation is the process of improving your site so more visitors take the action you want: filling out a form, making a call, booking an appointment. We look at how people behave on your site — where they click, where they hesitate, where they leave — and make targeted changes based on that data. That might mean testing two versions of a headline, redesigning a form, moving a button, or simplifying a page that's trying to do too much. Small changes, tested properly, often make a bigger difference than a full redesign.",
+          "How visitors behave on your website tells us where they're dropping off and why. We make targeted changes to increase the percentage that take action, whether that's submitting a form, making a call, or completing a purchase. A/B testing, landing page improvements, form and call-to-action adjustments, user behaviour analysis using heatmaps and session recordings.",
+          "Every change is tested against a control before it becomes permanent. You see the data behind every recommendation.",
         ],
         mediaLabel: "Conversion rate optimisation project media",
         image: "/images/service/marketing/marketing-conversion-banner.avif",
@@ -659,29 +699,44 @@ export const services: ServiceCategory[] = [
     faq: {
       heading: {
         before: "Your ",
-        accent: "growth questions,",
+        accent: "questions,",
         after: " answered",
       },
       items: [
         {
+          question: "How much does marketing cost?",
+          answer:
+            "It depends on what you need. Most work fits one of our packages, or we scope a custom monthly plan around your goals and budget. Either way, no spend goes ahead without a plan you've reviewed and signed off first.",
+        },
+        {
+          question: "Are we locked into a long contract?",
+          answer:
+            "No. Ongoing marketing runs month to month, so you can stop whenever it stops working for you. We'd rather keep your business by earning it each month than by tying you in.",
+        },
+        {
+          question: "How do you decide which channels to use?",
+          answer:
+            "We start with your audience, your offer, your goals, and your budget. From there we work out whether search, content, paid ads, conversion work, or a mix gives you the clearest route to more enquiries. We don't push channels you don't need.",
+        },
+        {
           question: "How long does SEO take to show results?",
           answer:
-            "SEO builds over time rather than producing an instant spike. Technical and on-page improvements can be recognised relatively quickly, while meaningful ranking and traffic growth often takes several months. We track progress from the beginning and explain which changes are gaining traction.",
+            "SEO builds over time, it doesn't spike overnight. Technical and on-page fixes get picked up fairly quickly, but real ranking and traffic gains usually take a few months. We track it from day one and show you which changes are landing.",
         },
         {
-          question: "How do you decide which marketing channels to use?",
+          question: "Do we keep access to our own accounts?",
           answer:
-            "We start with your audience, offer, goals, existing data, and available budget. From there, we identify whether search, content, paid campaigns, conversion improvements, or a combination of channels gives you the clearest route to measurable growth.",
+            "Yes. Your Google, Meta, analytics, and Google Business Profile accounts are set up in your name, and you keep full ownership and access. We manage them for you, but nothing sits locked under our account. If we ever stop working together, everything stays with you.",
         },
         {
-          question: "What is included in your marketing reports?",
+          question: "What's included in your marketing reports?",
           answer:
-            "Reports focus on the numbers connected to business outcomes: qualified traffic, enquiries, calls, bookings, campaign efficiency, and conversion performance. Each report also explains what changed, what we learned, and what we recommend doing next.",
+            "The numbers that tie to your business, not vanity metrics: qualified traffic, enquiries, calls, bookings, and how campaigns are performing. Each report also says what changed, what we learned, and what we'd do next, in plain language.",
         },
         {
-          question: "Can you improve conversions without redesigning the whole site?",
+          question: "Can you improve conversions without redesigning the site?",
           answer:
-            "Yes. Conversion optimisation is usually based on focused, evidence-led changes rather than a complete redesign. We can improve messaging, forms, calls to action, page hierarchy, and individual journey steps, then measure whether those changes produce better results.",
+            "Yes. Most conversion work is focused, evidence-led changes, not a full rebuild. We improve messaging, forms, calls to action, and page structure, then measure whether the changes actually move results. If a bigger fix is needed, we tell you before touching anything.",
         },
       ],
     },
@@ -713,7 +768,7 @@ export const services: ServiceCategory[] = [
       },
       {
         slug: "conversion-rate-optimisation",
-        title: "Conversion Rate Optimisation",
+        title: "Conversion Optimisation",
         excerpt:
           "Targeted improvements that turn more existing traffic into enquiries, bookings, and sales.",
       },
@@ -727,7 +782,7 @@ export const services: ServiceCategory[] = [
     cardImage: "/images/home/service/service-maintenance.avif",
     detailHero: {
       intro:
-        "Ongoing technical care that keeps your website secure, current, fast, and dependable long after the initial launch.",
+        "Once a Monotone site is live, it stays secure, up to date, and running properly. Updates, backups, security monitoring, performance checks, content changes, all on an ongoing basis. Issues are caught early through automated monitoring, not after a customer reports a broken page. Every task we perform is logged and reported. Whether you need a small text change or an emergency fix at short notice, there's a clear process for requesting it and a defined timeframe for completion.",
       featuredSubService: "security-updates",
       image: "/images/service/maintenance/maintenance-banner.avif",
     },
@@ -743,7 +798,8 @@ export const services: ServiceCategory[] = [
           "Firewall & Login Protection",
         ],
         body: [
-          "WordPress sites need regular updates to stay secure. The core software, your plugins, and your theme all release updates — some for new features, some to close security holes. If these aren't applied promptly, your site becomes a target. We handle all updates on a set schedule, testing for compatibility before anything goes live so an update doesn't break your site. We run malware scans to catch anything suspicious early, apply security patches as soon as they're available, and configure firewall and login protections to block common attacks. If something does get through, we clean it up and close the gap that let it in. You don't need to think about any of this — that's the point.",
+          "Your CMS, plugins, and theme files are kept up to date with security patches applied as they're released. Every update is tested in a staging environment before it touches your live site, so nothing breaks unexpectedly. Regular malware scans and vulnerability monitoring run in the background.",
+          "If a security issue is detected, we act on it immediately, not at the next scheduled window. You receive a log of every update applied: what was done and when.",
         ],
         mediaLabel: "Website security and updates media",
         image: "/images/service/maintenance/maintenance-security-banner.avif",
@@ -763,7 +819,8 @@ export const services: ServiceCategory[] = [
           "Backup Restoration",
         ],
         body: [
-          "If something goes wrong with your site — a bad update, a hack, a server failure — you need a recent backup ready to restore from. We run automated daily backups of your entire site, stored off-site so they're available even if your hosting goes down. We also monitor your site's uptime around the clock. If it goes offline, we get an alert immediately — usually before you or your customers notice. When restoration is needed, we handle it: no digging through hosting panels, no guesswork, no waiting on hold. Your most recent backup is always ready, and someone is always watching. This is the safety net that makes everything else on this list recoverable.",
+          "Automated daily backups of your entire website, files and database, stored securely off-site. Your site is monitored around the clock for uptime, and you're alerted immediately if it goes down. Restoring from a backup is fast and tested regularly to make sure it actually works when needed.",
+          "You always have access to your backup history, and we retain enough restore points to roll back to any recent version.",
         ],
         mediaLabel: "Website backups and monitoring media",
         image: "/images/service/maintenance/maintenance-backup-banner.avif",
@@ -783,7 +840,8 @@ export const services: ServiceCategory[] = [
           "Caching Configuration",
         ],
         body: [
-          "A slow website loses visitors and ranks lower on Google. We run regular speed audits to catch performance issues before they affect your business — bloated images, unoptimised code, database clutter, badly configured caching. Core Web Vitals are the specific metrics Google uses to judge your site's user experience: how fast a page loads, how quickly it responds to interaction, and how stable the layout is while loading. We monitor all of them and fix problems as they come up. Database optimisation clears out the accumulated clutter that slows WordPress down over time. Image and asset compression keeps your files as small as possible without losing quality. The goal is a site that stays fast — not one that was fast once at launch.",
+          "Regular speed audits and Core Web Vitals monitoring. These are the metrics Google uses to assess loading speed, responsiveness, and visual stability. When performance drops, we identify the cause and fix it, whether that's bloated images, unoptimised code, slow plugins, or a database that needs cleaning.",
+          "Every fix is documented with before-and-after measurements. The goal is a site that stays fast consistently, not just on launch day.",
         ],
         mediaLabel: "Website performance checks media",
         image: "/images/service/maintenance/maintenance-performance-banner.avif",
@@ -803,7 +861,8 @@ export const services: ServiceCategory[] = [
           "Seasonal & Promotional Updates",
         ],
         body: [
-          "Your website isn't a one-time project — it needs to change as your business changes. New services, updated pricing, seasonal promotions, team changes, new locations. We handle all of it. Send us what needs updating — text, images, new pages, menu changes, layout tweaks — and we make the edits. This is useful if you don't want to learn the backend of your site, or if a change is complex enough that doing it yourself risks breaking something. We also handle time-sensitive updates: putting up a Ramadan offer, updating your holiday hours, adding a new service to your lineup. Your site stays current without you needing to open WordPress yourself.",
+          "The day-to-day content changes your website needs. Updating text, swapping images, adding new pages, adjusting menus, editing layouts. Every change request follows a simple process: you tell us what needs updating, we make the change, you review it before it goes live.",
+          "Turnaround times are defined in your support plan so you know exactly when to expect completion. This covers routine updates, not full redesigns. Those are scoped as separate projects.",
         ],
         mediaLabel: "Website content updates media",
         image: "/images/service/maintenance/maintenance-updates-banner.avif",
@@ -814,7 +873,7 @@ export const services: ServiceCategory[] = [
       },
       {
         slug: "bug-fixes-troubleshooting",
-        title: "Bug Fixes & Troubleshooting",
+        title: "Bug Fixes",
         capabilities: [
           "Broken Feature Repairs",
           "Display & Layout Issues",
@@ -823,7 +882,8 @@ export const services: ServiceCategory[] = [
           "Emergency Support",
         ],
         body: [
-          "Things break. A plugin update clashes with your theme. A form stops sending emails. A page looks fine on Chrome but falls apart on Safari. A feature that worked yesterday stops working today. We fix these problems — usually within hours, not days. We diagnose the root cause, apply the fix, and test across devices and browsers to make sure it's actually resolved, not just patched over. For urgent issues — your site is down, your contact form isn't working during a campaign, your booking system stops accepting appointments — we offer emergency support with faster response times. You don't need to understand what went wrong. You just need it fixed.",
+          "When something breaks, a form that stops submitting, a layout that looks wrong on certain browsers, a feature that worked yesterday and doesn't today, we diagnose it and fix it. Cross-browser display problems, mobile rendering issues, plugin conflicts, broken functionality.",
+          "Emergency support is available for critical failures that affect your ability to take enquiries or process orders. Every fix is tested and documented, and we flag recurring issues that point to deeper problems worth addressing.",
         ],
         mediaLabel: "Website troubleshooting media",
         image: "/images/service/maintenance/maintenance-bugs-banners.avif",
@@ -836,29 +896,39 @@ export const services: ServiceCategory[] = [
     faq: {
       heading: {
         before: "Your ",
-        accent: "maintenance questions,",
+        accent: "questions,",
         after: " answered",
       },
       items: [
         {
-          question: "What is included in ongoing website maintenance?",
+          question: "What's included in ongoing maintenance?",
           answer:
-            "Maintenance can include WordPress core, plugin, and theme updates, security patches, malware scanning, daily backups, uptime monitoring, performance checks, content updates, and bug fixes. We shape the exact plan around the website and the level of support your team needs.",
+            "Depending on your plan: software, security, plugin, and theme updates, malware scanning, daily backups, uptime monitoring, performance checks, content updates, and bug fixes. We shape the plan around your site and how much support you actually need.",
         },
         {
-          question: "How often do you update and back up the website?",
+          question: "How much does maintenance cost?",
           answer:
-            "We run automated daily backups and store them away from the live website. Software and security updates are applied on a planned schedule, with compatibility checks before changes go live and additional attention when an urgent patch is released.",
+            "It depends on how much cover you need. Most sites fit our Support package, or we tailor a plan to your site and its traffic. You get a fixed monthly figure up front, so there are no surprise bills.",
         },
         {
-          question: "How quickly can you respond when something breaks?",
+          question: "Are we tied into a contract?",
           answer:
-            "Response time depends on the severity of the issue and the support plan. Urgent problems such as downtime, broken enquiry forms, or failed booking systems are prioritised, diagnosed quickly, and tested across devices and browsers after the fix is applied.",
+            "No. Support runs month to month, so you can stop whenever you want. Everything we manage, hosting, backups, access, is set up in your name, so leaving is clean and the site stays yours.",
         },
         {
-          question: "Can you maintain a website you did not build?",
+          question: "How fast do you respond when something breaks?",
           answer:
-            "Yes. We begin with a technical review of the website, hosting, plugins, backups, and existing access. If the setup is maintainable, we can take over directly; if we find risks or outdated components, we explain what should be stabilised before ongoing support begins.",
+            "It depends on how serious it is and which plan you're on. Anything urgent, downtime, a broken enquiry form, a booking system that's stopped, jumps the queue. We diagnose it fast, fix it, and test the fix across devices before closing it out.",
+        },
+        {
+          question: "Does maintenance cover any change we ask for?",
+          answer:
+            "It covers routine changes: text edits, image swaps, new pages, menu and layout tweaks. Bigger jobs like a full redesign are scoped as their own project. If a request crosses that line, we tell you before doing any work.",
+        },
+        {
+          question: "Will we know what you've actually done?",
+          answer:
+            "Yes. Every task we carry out is logged: what was done, when, and why. You get a regular report, so you can see exactly what your plan is paying for instead of taking it on trust.",
         },
       ],
     },
@@ -890,7 +960,7 @@ export const services: ServiceCategory[] = [
       },
       {
         slug: "bug-fixes-troubleshooting",
-        title: "Bug Fixes & Troubleshooting",
+        title: "Bug Fixes",
         excerpt:
           "Fast diagnosis and repair for broken features, display issues, conflicts, and urgent problems.",
       },

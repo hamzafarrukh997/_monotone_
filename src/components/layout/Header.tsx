@@ -154,10 +154,6 @@ function MenuControls({
           )}
         >
           <span className="project-trigger__label">{site.cta.label}</span>
-          <span className="project-trigger__icon" aria-hidden="true">
-            <span className="project-trigger__arrow project-trigger__arrow--front">↗</span>
-            <span className="project-trigger__arrow project-trigger__arrow--back">↗</span>
-          </span>
         </button>
       </span>
       <button
@@ -187,6 +183,9 @@ function DesktopNavigation({
   onDark: boolean;
 }) {
   const pathname = usePathname();
+  const [servicesOpen, setServicesOpen] = useState(false);
+
+  const closeServices = () => setServicesOpen(false);
 
   return (
     <div
@@ -199,8 +198,86 @@ function DesktopNavigation({
             const current =
               pathname === item.href || pathname.startsWith(`${item.href}/`);
 
+            if (item.children?.length) {
+              return (
+                <li
+                  key={item.href}
+                  data-dropdown-state={servicesOpen ? "open" : "closed"}
+                  className="header-desktop-nav__item header-desktop-nav__item--dropdown"
+                  onMouseEnter={() => setServicesOpen(true)}
+                  onMouseLeave={closeServices}
+                  onFocusCapture={() => setServicesOpen(true)}
+                  onBlurCapture={(event) => {
+                    if (!event.currentTarget.contains(event.relatedTarget)) {
+                      closeServices();
+                    }
+                  }}
+                  onKeyDown={(event) => {
+                    if (event.key !== "Escape") return;
+                    event.preventDefault();
+                    event.currentTarget.querySelector<HTMLAnchorElement>(
+                      ".header-desktop-nav__link",
+                    )?.focus();
+                    closeServices();
+                  }}
+                >
+                  <NextLink
+                    href={item.href as unknown as NextLinkHref}
+                    aria-current={current ? "page" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={servicesOpen}
+                    aria-controls="header-services-dropdown"
+                    onClick={closeServices}
+                    className="header-desktop-nav__link header-desktop-nav__link--dropdown"
+                  >
+                    {item.label}
+                    <svg
+                      aria-hidden="true"
+                      viewBox="0 0 10 6"
+                      className="header-desktop-nav__chevron"
+                    >
+                      <path d="M1 1 5 5 9 1" />
+                    </svg>
+                  </NextLink>
+
+                  <div
+                    id="header-services-dropdown"
+                    aria-hidden={!servicesOpen}
+                    className="header-services-dropdown"
+                  >
+                    <div className="header-services-dropdown__surface">
+                      <p className="header-services-dropdown__eyebrow">
+                        Our services
+                      </p>
+                      <ul className="header-services-dropdown__list">
+                        {item.children.map((child) => {
+                          const childCurrent =
+                            pathname === child.href ||
+                            pathname.startsWith(`${child.href}/`);
+
+                          return (
+                            <li key={child.href}>
+                              <NextLink
+                                href={child.href as unknown as NextLinkHref}
+                                aria-current={childCurrent ? "page" : undefined}
+                                tabIndex={servicesOpen ? undefined : -1}
+                                onClick={closeServices}
+                                className="header-services-dropdown__link"
+                              >
+                                <span>{child.label}</span>
+                              </NextLink>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              );
+            }
+
             return (
-              <li key={item.href}>
+              <li key={item.href} className="header-desktop-nav__item">
                 <NextLink
                   href={item.href as unknown as NextLinkHref}
                   aria-current={current ? "page" : undefined}
@@ -223,10 +300,6 @@ function DesktopNavigation({
         className="project-trigger project-trigger--desktop"
       >
         <span className="project-trigger__label">{site.cta.label}</span>
-        <span className="project-trigger__icon" aria-hidden="true">
-          <span className="project-trigger__arrow project-trigger__arrow--front">↗</span>
-          <span className="project-trigger__arrow project-trigger__arrow--back">↗</span>
-        </span>
       </button>
     </div>
   );
