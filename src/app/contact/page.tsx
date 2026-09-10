@@ -67,7 +67,7 @@ export default function ContactPage() {
                 <ContactProjectTrigger />
                 <a
                   href={`mailto:${contact.email}`}
-                  className="hero-cta hero-cta--secondary inline-flex min-h-14 items-center justify-center rounded-full border border-[#2b2b2b] px-7 font-sans text-sm font-normal text-[#2b2b2b] no-underline"
+                  className="hero-cta hero-cta--secondary inline-flex min-h-14 items-center justify-center rounded-full border border-[#2b2b2b] px-7 font-sans text-sm font-light text-[#2b2b2b] no-underline"
                 >
                   <span className="hero-cta__label">Email us directly</span>
                 </a>

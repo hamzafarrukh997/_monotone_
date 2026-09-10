@@ -139,22 +139,21 @@ function MenuControls({
       )}
     >
       <span className="menu-controls__cta">
-        <button
+        <Button
           type="button"
+          variant="secondary"
+          size="lg"
           aria-haspopup="dialog"
           aria-expanded={projectOpen}
           aria-controls="project-request-dialog"
           onClick={onProjectOpen}
-          data-menu-open={open}
           className={cn(
-            "menu-controls__button project-trigger",
-            compact
-              ? "project-trigger--compact"
-              : "project-trigger--desktop",
+            "menu-controls__button home-heading-cta home-heading-cta--header shrink-0 px-8 text-[18px] font-[350]",
+            compact && "h-10 px-5 text-sm",
           )}
         >
-          <span className="project-trigger__label">{site.cta.label}</span>
-        </button>
+          <span className="home-heading-cta__label">{site.cta.label}</span>
+        </Button>
       </span>
       <button
         type="button"
@@ -174,12 +173,8 @@ function MenuControls({
 }
 
 function DesktopNavigation({
-  onProjectOpen,
-  projectOpen,
   onDark,
 }: {
-  onProjectOpen: () => void;
-  projectOpen: boolean;
   onDark: boolean;
 }) {
   const pathname = usePathname();
@@ -290,17 +285,6 @@ function DesktopNavigation({
           })}
         </ul>
       </nav>
-
-      <button
-        type="button"
-        aria-haspopup="dialog"
-        aria-expanded={projectOpen}
-        aria-controls="project-request-dialog"
-        onClick={onProjectOpen}
-        className="project-trigger project-trigger--desktop"
-      >
-        <span className="project-trigger__label">{site.cta.label}</span>
-      </button>
     </div>
   );
 }
@@ -397,12 +381,25 @@ export function Header() {
                 <Brand onDark={brandOnDark} />
               </div>
 
-              <div className="header-controls-scale absolute right-[clamp(4rem,5.05vw,6.0625rem)] top-1/2">
-                <DesktopNavigation
-                  onDark={brandOnDark}
-                  projectOpen={projectOpen}
-                  onProjectOpen={openProjectRequest}
-                />
+              <div className="absolute right-[clamp(4rem,5.05vw,6.0625rem)] top-1/2 z-[60] flex -translate-y-1/2 items-center gap-6">
+                <div className="header-controls-scale">
+                  <DesktopNavigation onDark={brandOnDark} />
+                </div>
+
+                <Button
+                  type="button"
+                  variant="secondary"
+                  size="lg"
+                  aria-haspopup="dialog"
+                  aria-expanded={projectOpen}
+                  aria-controls="project-request-dialog"
+                  onClick={openProjectRequest}
+                  className="home-heading-cta home-heading-cta--header pointer-events-auto shrink-0 px-8 text-[18px] font-[350]"
+                >
+                  <span className="home-heading-cta__label">
+                    {site.cta.label}
+                  </span>
+                </Button>
               </div>
             </div>
           </div>

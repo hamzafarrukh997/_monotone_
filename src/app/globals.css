@@ -311,6 +311,7 @@
   }
 
   .header-controls-scale {
+    transform: scale(min(calc(100vw / 1386px), 1.3852813853));
     transform-origin: right center;
   }
 
@@ -852,6 +853,9 @@
   border-color: var(--color-accent);
   color: var(--color-fg);
   background: transparent;
+  font-size: 18px;
+  font-weight: 350;
+  line-height: 1;
   transition:
     color 360ms cubic-bezier(0.22, 1, 0.36, 1),
     border-color 360ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -928,6 +932,30 @@
 .home-heading-cta--on-dark:focus-visible .home-heading-cta__label,
 .home-heading-cta--on-dark:hover .home-heading-cta__icon,
 .home-heading-cta--on-dark:focus-visible .home-heading-cta__icon {
+  color: #ffffff;
+}
+
+.home-heading-cta--header {
+  border-color: var(--color-accent);
+  color: var(--color-accent-foreground);
+  background: var(--color-accent);
+}
+
+.home-heading-cta--header::before {
+  background: #2b2b2b;
+}
+
+.home-heading-cta--header:hover,
+.home-heading-cta--header:focus-visible {
+  border-color: #2b2b2b;
+  color: #ffffff;
+  background: var(--color-accent);
+}
+
+.home-heading-cta--header:hover .home-heading-cta__label,
+.home-heading-cta--header:focus-visible .home-heading-cta__label,
+.home-heading-cta--header:hover .home-heading-cta__icon,
+.home-heading-cta--header:focus-visible .home-heading-cta__icon {
   color: #ffffff;
 }
 

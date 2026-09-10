@@ -277,7 +277,7 @@ export function CaseStudyDetail({
               href={routes.work}
               variant="dark"
               size="lg"
-              className="hero-cta hero-cta--secondary mt-12 min-h-14 border-[#2b2b2b] px-7 font-normal"
+              className="hero-cta hero-cta--secondary mt-12 min-h-14 border-[#2b2b2b] px-7 font-light"
             >
               <span className="hero-cta__label">View all work</span>
             </Button>

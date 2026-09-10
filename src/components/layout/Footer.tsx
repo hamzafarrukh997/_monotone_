@@ -73,7 +73,7 @@ export function Footer() {
             aria-haspopup="dialog"
             aria-controls="project-request-dialog"
             onClick={openProjectRequest}
-            className="home-heading-cta home-heading-cta--on-dark mt-9 shrink-0 px-8 text-base font-normal"
+            className="home-heading-cta home-heading-cta--on-dark mt-9 shrink-0 px-8 text-[18px] font-[350]"
           >
             <span className="home-heading-cta__label">{cta.cta}</span>
           </Button>

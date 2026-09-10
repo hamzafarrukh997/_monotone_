@@ -208,7 +208,7 @@ export function WorkIndex() {
             href={routes.contact}
             variant="dark"
             size="lg"
-            className="hero-cta hero-cta--secondary mt-8 min-h-14 shrink-0 border-[#2b2b2b] px-7 font-normal lg:mt-0"
+            className="hero-cta hero-cta--secondary mt-8 min-h-14 shrink-0 border-[#2b2b2b] px-7 font-light lg:mt-0"
           >
             <span className="hero-cta__label">Request a free audit</span>
           </Button>

@@ -99,7 +99,7 @@ export function ServiceDetailSection({
               {showCta ? (
                 <Button
                   href={section.cta.href}
-                  className="mt-10 h-[3.125rem] w-[9.8125rem] !px-0 text-[1.25rem] font-normal tracking-[-0.03em] xl:mt-auto"
+                  className="mt-10 h-[3.125rem] w-[9.8125rem] !px-0 text-[1.25rem] font-light tracking-[-0.03em] xl:mt-auto"
                 >
                   {section.cta.label}
                 </Button>

@@ -29,15 +29,9 @@ export function InsightsShowcase() {
             href={cta.href}
             variant="secondary"
             size="lg"
-            className="home-heading-cta group/cta w-fit shrink-0 gap-4 px-7 text-base font-medium transition-[background-color,color,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            className="home-heading-cta shrink-0 px-8 text-[18px] font-[350]"
           >
             <span className="home-heading-cta__label">{cta.label}</span>
-            <span
-              className="home-heading-cta__icon text-lg leading-none text-accent transition-[color,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5"
-              aria-hidden="true"
-            >
-              ↗
-            </span>
           </Button>
         </div>
 

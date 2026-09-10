@@ -27,7 +27,7 @@ export function WorkShowcase() {
             href={cta.href}
             variant="secondary"
             size="lg"
-            className="home-heading-cta shrink-0 px-8 text-base"
+            className="home-heading-cta shrink-0 px-8 text-[18px] font-[350]"
           >
             <span className="home-heading-cta__label">{cta.label}</span>
           </Button>

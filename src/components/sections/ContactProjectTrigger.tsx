@@ -12,7 +12,7 @@ export function ContactProjectTrigger() {
       aria-haspopup="dialog"
       aria-controls="project-request-dialog"
       onClick={openProjectRequest}
-      className="hero-cta hero-cta--primary min-h-14 px-7 font-normal"
+      className="hero-cta hero-cta--primary min-h-14 px-7 font-light"
     >
       <span className="hero-cta__label">Tell us about your project</span>
     </Button>

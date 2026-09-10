@@ -206,7 +206,7 @@ export default async function BlogPostPage({
               {relatedServices[0] ? (
                 <a
                   href={routes.service(relatedServices[0].slug)}
-                  className="hero-cta hero-cta--secondary inline-flex min-h-14 w-fit items-center justify-center rounded-full border border-[#2b2b2b] px-7 font-sans text-sm font-normal"
+                  className="hero-cta hero-cta--secondary inline-flex min-h-14 w-fit items-center justify-center rounded-full border border-[#2b2b2b] px-7 font-sans text-sm font-light"
                 >
                   <span className="hero-cta__label">
                     Explore {relatedServices[0].title}

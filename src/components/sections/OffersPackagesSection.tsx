@@ -48,7 +48,7 @@ export function OffersPackagesSection() {
                   href={routes.offer(offer.slug)}
                   variant="secondary"
                   size="lg"
-                  className="h-[50px] px-[1.6rem] text-[1rem] font-normal tracking-[-0.03em]"
+                  className="h-[50px] px-[1.6rem] text-[1rem] font-light tracking-[-0.03em]"
                 >
                   {offersPage.cardCta}
                 </Button>

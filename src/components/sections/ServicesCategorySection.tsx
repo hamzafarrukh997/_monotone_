@@ -59,7 +59,7 @@ export function ServicesCategorySection({
             href={learnMoreHref}
             variant="primary"
             size="lg"
-            className="mt-[clamp(2rem,3.85vw,4.625rem)] h-[50px] px-[1.8rem] text-[clamp(0.95rem,1.042vw,1.25rem)] font-normal tracking-[-0.03em]"
+            className="mt-[clamp(2rem,3.85vw,4.625rem)] h-[50px] px-[1.8rem] text-[clamp(0.95rem,1.042vw,1.25rem)] font-light tracking-[-0.03em]"
           >
             {learnMoreLabel}
           </Button>
@@ -122,7 +122,7 @@ export function ServicesCategorySection({
                           href={learnMoreHref}
                           variant="secondary"
                           size="lg"
-                          className="mt-6 h-[50px] px-[1.6rem] text-[clamp(0.95rem,1.042vw,1.25rem)] font-normal tracking-[-0.03em]"
+                          className="mt-6 h-[50px] px-[1.6rem] text-[clamp(0.95rem,1.042vw,1.25rem)] font-light tracking-[-0.03em]"
                         >
                           {item.cta}
                         </Button>

@@ -19,13 +19,13 @@ export default function HomePage() {
       {/* Designed homepage sections */}
       <Hero />
 
+      <WorkShowcase />
       <ServicesShowcase />
 
       <OffersShowcase />
 
       <ProcessShowcase />
 
-      <WorkShowcase />
 
       <InsightsShowcase />
 

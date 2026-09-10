@@ -107,7 +107,7 @@ function DesktopHero() {
         <Button
           href={hero.primaryCta.href}
           size="sm"
-          className="hero-cta hero-cta--primary h-[38px] whitespace-nowrap px-7 text-[15.5px] font-normal leading-none uppercase tracking-[-0.1px]"
+          className="hero-cta hero-cta--primary h-[38px] whitespace-nowrap px-7 text-[15.5px] font-light leading-none uppercase tracking-[-0.1px]"
         >
           <HeroCtaContent label={hero.primaryCta.label} />
         </Button>
@@ -115,7 +115,7 @@ function DesktopHero() {
           href={hero.secondaryCta.href}
           variant="secondary"
           size="sm"
-          className="hero-cta hero-cta--secondary h-[38px] whitespace-nowrap px-7 text-[15.5px] font-normal leading-none uppercase tracking-[-0.1px]"
+          className="hero-cta hero-cta--secondary h-[38px] whitespace-nowrap px-7 text-[15.5px] font-light leading-none uppercase tracking-[-0.1px]"
         >
           <HeroCtaContent label={hero.secondaryCta.label} />
         </Button>
@@ -159,14 +159,14 @@ function MobileHero() {
         <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
           <Button
             href={hero.primaryCta.href}
-            className="hero-cta hero-cta--primary h-11 px-7 text-xs font-normal uppercase"
+            className="hero-cta hero-cta--primary h-11 px-7 text-xs font-light uppercase"
           >
             <HeroCtaContent label={hero.primaryCta.label} />
           </Button>
           <Button
             href={hero.secondaryCta.href}
             variant="secondary"
-            className="hero-cta hero-cta--secondary h-11 px-7 text-xs font-normal uppercase"
+            className="hero-cta hero-cta--secondary h-11 px-7 text-xs font-light uppercase"
           >
             <HeroCtaContent label={hero.secondaryCta.label} />
           </Button>

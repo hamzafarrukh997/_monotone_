@@ -28,7 +28,7 @@ export function OfferDetailHero({ offer }: { offer: Offer }) {
             href={routes.contact}
             variant="primary"
             size="lg"
-            className="mt-8 h-[50px] px-8 text-base font-normal tracking-[-0.03em]"
+            className="mt-8 h-[50px] px-8 text-base font-light tracking-[-0.03em]"
           >
             Request a Quote
           </Button>
