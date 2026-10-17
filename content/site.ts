@@ -38,10 +38,10 @@ const serviceNavItems: NavItem[] = services.map((service) => ({
 
 export const site = {
   name: "Monotone",
-  shortDescription: "A digital agency for design, web, and growth.",
+  shortDescription: "Web design, development, and growth marketing",
   description:
-    "Monotone is a digital agency pairing research-led design, modern web development, and measurable growth marketing.",
-  /** Canonical production origin. Swap for the real domain before launch. */
+    "Monotone designs and builds custom websites, brand identities, and growth marketing for businesses in Pakistan and worldwide.",
+  /** Canonical production origin. */
   url: "https://monotone.digital",
 
   /** Primary header navigation. */

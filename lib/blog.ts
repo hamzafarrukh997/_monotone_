@@ -17,6 +17,7 @@ export type PostMeta = {
   metaTitle: string;
   slug: string;
   date: string;
+  updated: string;
   excerpt: string;
   cover: string;
   tags: string[];
@@ -47,6 +48,7 @@ function readPostFile(fileName: string): Post {
     metaTitle: String(data.metaTitle ?? data.title ?? ""),
     slug: String(data.slug ?? fileName.replace(/\.mdx?$/, "")),
     date: String(data.date ?? ""),
+    updated: String(data.updated ?? data.date ?? ""),
     excerpt: String(data.excerpt ?? ""),
     cover: String(data.cover ?? ""),
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],

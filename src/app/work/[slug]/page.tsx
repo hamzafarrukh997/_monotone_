@@ -8,6 +8,7 @@ import {
 import { getServiceForPortfolio, routes } from "@/lib/links";
 import { site } from "@/content/site";
 import { CaseStudyDetail } from "@/components/sections/CaseStudyDetail";
+import { absoluteUrl, jsonLd, pageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return portfolioSlugs.map((slug) => ({ slug }));
@@ -19,16 +20,24 @@ export async function generateMetadata({
   const { slug } = await params;
   const study = getCaseStudy(slug);
   if (!study) return {};
+  const heroImage = study.images.find((image) => image.role === "hero")?.src;
+
+  const base = pageMetadata({
+    title: `${study.client} Website Case Study`,
+    description: study.summary,
+    path: routes.workItem(study.slug),
+    image: heroImage,
+  });
 
   return {
-    title: study.client,
-    description: study.summary,
-    alternates: { canonical: routes.workItem(study.slug) },
+    ...base,
     openGraph: {
       type: "article",
-      title: study.client,
+      siteName: site.name,
+      title: `${study.client} Website Case Study | ${site.name}`,
       description: study.summary,
-      url: routes.workItem(study.slug),
+      url: absoluteUrl(routes.workItem(study.slug)),
+      images: heroImage ? [absoluteUrl(heroImage)] : undefined,
     },
   };
 }
@@ -44,7 +53,7 @@ export default async function WorkDetailPage({
   const nextStudy =
     publishedCaseStudies[(index + 1) % publishedCaseStudies.length];
   const relatedService = getServiceForPortfolio(study.slug);
-  const canonicalUrl = new URL(routes.workItem(study.slug), site.url).toString();
+  const canonicalUrl = absoluteUrl(routes.workItem(study.slug));
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
@@ -65,7 +74,7 @@ export default async function WorkDetailPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+          __html: jsonLd(structuredData),
         }}
       />
       <CaseStudyDetail

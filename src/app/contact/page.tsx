@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { site } from "@/content/site";
 import { ContactProjectTrigger } from "@/components/sections/ContactProjectTrigger";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Contact",
+export const metadata: Metadata = pageMetadata({
+  title: "Contact Monotone About Your Website Project",
   description:
-    "Tell Monotone what you are building, what is not working, or where your business needs to go next.",
-  alternates: { canonical: "/contact" },
-};
+    "Tell Monotone about your website, brand, or growth project. Email or message our remote team to discuss the clearest next step.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   const { contact } = site;

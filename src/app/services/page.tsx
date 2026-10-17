@@ -6,12 +6,14 @@ import { ServicesGrowthMarketingSection } from "@/components/sections/ServicesGr
 import { ServicesHero } from "@/components/sections/ServicesHero";
 import { ServicesMaintenanceSection } from "@/components/sections/ServicesMaintenanceSection";
 import { servicesPage } from "@/content/services";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Services",
+export const metadata: Metadata = pageMetadata({
+  title: "Web Design, Development & Digital Marketing Services",
   description:
-    "Design, web development, growth marketing, and maintenance & support.",
-};
+    "Explore Monotone's brand and web design, website development, SEO and growth marketing, and ongoing website maintenance services.",
+  path: "/services",
+});
 
 export default function ServicesPage() {
   return (

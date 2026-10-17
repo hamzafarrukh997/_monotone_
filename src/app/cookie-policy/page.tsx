@@ -4,6 +4,7 @@ import { routes } from "@/lib/links";
 export const metadata: Metadata = {
   title: "Cookie Policy",
   description: "How Monotone uses cookies and similar technologies.",
+  robots: { index: false, follow: true },
 };
 
 export default function CookiePolicyPage() {

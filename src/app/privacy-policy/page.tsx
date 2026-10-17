@@ -4,6 +4,7 @@ import { routes } from "@/lib/links";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "How Monotone collects, uses, and protects your personal data.",
+  robots: { index: false, follow: true },
 };
 
 export default function PrivacyPolicyPage() {

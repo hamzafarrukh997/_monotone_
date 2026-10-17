@@ -9,6 +9,7 @@ import { OfferTimelineSection } from "@/components/sections/OfferTimelineSection
 import { OfferGuaranteeSection } from "@/components/sections/OfferGuaranteeSection";
 import { OfferCrossLinks } from "@/components/sections/OfferCrossLinks";
 import { OfferClosingCta } from "@/components/sections/OfferClosingCta";
+import { pageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return offerSlugs.map((slug) => ({ slug }));
@@ -20,11 +21,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const offer = getOffer(slug);
   if (!offer) return {};
-  return {
-    title: offer.title,
-    description: offer.summary,
-    alternates: { canonical: routes.offer(offer.slug) },
-  };
+  return pageMetadata({
+    title: `${offer.title} for Business Websites`,
+    description: offer.description,
+    path: routes.offer(offer.slug),
+  });
 }
 
 export default async function OfferDetailPage({

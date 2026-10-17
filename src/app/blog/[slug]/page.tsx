@@ -6,6 +6,7 @@ import { InsightArtwork } from "@/components/sections/InsightsIndex";
 import { getAllPostSlugs, getPostBySlug, getRelatedPosts } from "@/lib/blog";
 import { getServicesForSlugs, routes } from "@/lib/links";
 import { site } from "@/content/site";
+import { absoluteUrl, jsonLd, pageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return getAllPostSlugs().map((slug) => ({ slug }));
@@ -19,17 +20,25 @@ export async function generateMetadata({
   if (!post) return {};
   const { meta } = post;
 
-  return {
+  const base = pageMetadata({
     title: meta.metaTitle,
     description: meta.excerpt,
-    alternates: { canonical: routes.post(meta.slug) },
+    path: routes.post(meta.slug),
+    image: meta.cover || undefined,
+  });
+
+  return {
+    ...base,
     openGraph: {
       type: "article",
-      title: meta.title,
+      siteName: site.name,
+      title: `${meta.title} | ${site.name}`,
       description: meta.excerpt,
+      url: absoluteUrl(routes.post(meta.slug)),
       publishedTime: meta.date,
+      modifiedTime: meta.updated,
       authors: [site.name],
-      images: meta.cover ? [meta.cover] : undefined,
+      images: meta.cover ? [absoluteUrl(meta.cover)] : undefined,
     },
   };
 }
@@ -53,7 +62,7 @@ export default async function BlogPostPage({
   const { meta, content } = post;
   const relatedPosts = getRelatedPosts(meta.slug);
   const relatedServices = getServicesForSlugs(meta.relatedServices);
-  const canonicalUrl = new URL(routes.post(meta.slug), site.url).toString();
+  const canonicalUrl = absoluteUrl(routes.post(meta.slug));
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -68,8 +77,9 @@ export default async function BlogPostPage({
           url: site.url,
         },
         datePublished: meta.date,
-        dateModified: meta.date,
+        dateModified: meta.updated,
         mainEntityOfPage: canonicalUrl,
+        image: meta.cover ? absoluteUrl(meta.cover) : undefined,
       },
       ...(meta.faqs.length > 0
         ? [
@@ -94,7 +104,7 @@ export default async function BlogPostPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+          __html: jsonLd(structuredData),
         }}
       />
 
@@ -121,7 +131,14 @@ export default async function BlogPostPage({
               {meta.excerpt}
             </p>
             <div className="mt-8 flex items-center justify-between gap-5 border-t border-[#2b2b2b]/25 pt-4 font-sans text-xs font-medium text-[#2b2b2b]/60">
-              <time dateTime={meta.date}>{formatDate(meta.date)}</time>
+              <div className="flex flex-wrap gap-x-4 gap-y-1">
+                <time dateTime={meta.date}>{formatDate(meta.date)}</time>
+                {meta.updated !== meta.date ? (
+                  <span>
+                    Updated <time dateTime={meta.updated}>{formatDate(meta.updated)}</time>
+                  </span>
+                ) : null}
+              </div>
               <span>{meta.readTime}</span>
             </div>
           </div>

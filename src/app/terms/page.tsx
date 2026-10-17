@@ -4,6 +4,7 @@ import { routes } from "@/lib/links";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: "The terms that govern your use of the Monotone website and services.",
+  robots: { index: false, follow: true },
 };
 
 export default function TermsPage() {

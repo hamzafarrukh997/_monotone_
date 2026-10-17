@@ -8,9 +8,15 @@ import { ServicesShowcase } from "@/components/sections/ServicesShowcase";
 import { TestimonialsShowcase } from "@/components/sections/TestimonialsShowcase";
 import { WorkShowcase } from "@/components/sections/WorkShowcase";
 import { site } from "@/content/site";
+import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  description: site.description,
+  ...pageMetadata({
+    title: "Web Design & Digital Marketing Agency",
+    description: site.description,
+    path: "/",
+  }),
+  title: { absolute: `Web Design & Digital Marketing Agency | ${site.name}` },
 };
 
 export default function HomePage() {

@@ -21,7 +21,7 @@ export const home = {
       after: "obsessively good websites",
     },
     subcopy:
-      "We build your website, brand, and copy and get you found on Google and in AI answers, instantly trusted.",
+      "We build your website, brand, and copy to make your business easier to find, understand, and trust.",
     /** Large, low-contrast background watermark. */
     watermark: [""],
     primaryCta: { label: "Request a free audit", href: routes.contact },
