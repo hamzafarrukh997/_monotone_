@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 import { createFluidSim, type FluidSimHandle } from "@/lib/fluidSim";
 
-export function HeroFluidCanvas() {
+export function HeroFluidCanvas({ paused = false }: { paused?: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const simRef = useRef<FluidSimHandle | null>(null);
   const destroyTimerRef = useRef<number | null>(null);
@@ -32,6 +32,12 @@ export function HeroFluidCanvas() {
     if (reduceMotion) {
       simRef.current?.stop();
       canvas.classList.remove("is-active");
+      return;
+    }
+
+    if (paused) {
+      simRef.current?.stop();
+      canvas.classList.toggle("is-active", Boolean(simRef.current));
       return;
     }
 
@@ -114,7 +120,7 @@ export function HeroFluidCanvas() {
       sim.stop();
       canvas.classList.remove("is-active");
     };
-  }, [reduceMotion]);
+  }, [reduceMotion, paused]);
 
   return (
     <div className="hero-fluid" aria-hidden="true">

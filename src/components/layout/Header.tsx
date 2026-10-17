@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
@@ -81,9 +81,7 @@ function NavPanel({
         inert={!open}
         className="menu-flyout__content relative z-[2] flex h-full flex-col px-5 pb-5 pt-[22px] text-accent-foreground"
       >
-        <div className="h-[26px]" aria-hidden="true" />
-
-        <nav aria-label="Primary" className="mt-[29px]">
+        <nav aria-label="Primary" className="mt-2">
           <ul className="menu-flyout__nav-list">
             {site.nav.map((item) => (
               <li key={item.href} className="menu-reveal h-[39px] border-b border-accent-foreground">
@@ -290,10 +288,12 @@ function DesktopNavigation({
 }
 
 export function Header() {
+  const headerRef = useRef<HTMLElement>(null);
   const [open, setOpen] = useState(false);
   const [projectOpen, setProjectOpen] = useState(false);
   const [brandOnDark, setBrandOnDark] = useState(false);
   const [headerHidden, setHeaderHidden] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const close = () => setOpen(false);
   const toggle = () => setOpen((value) => !value);
   const openProjectRequest = () => {
@@ -323,6 +323,9 @@ export function Header() {
 
     const updateHeaderState = () => {
       animationFrame = 0;
+      setScrolled(window.scrollY > 32);
+      const progress = Math.min(1, Math.max(0, (window.scrollY - 24) / 156));
+      headerRef.current?.style.setProperty("--header-progress", progress.toFixed(4));
       const sampleY = 40;
       const isOnDark = Array.from(
         document.querySelectorAll<HTMLElement>('[data-header-theme="dark"]'),
@@ -371,44 +374,41 @@ export function Header() {
       />
 
       <header
+        ref={headerRef}
         data-hidden={headerHidden}
+        data-scrolled={scrolled}
+        data-on-dark={brandOnDark}
         className="header-shell pointer-events-none fixed inset-x-0 z-50"
       >
-        <div className="relative z-[1] h-[323px] w-full">
-          <div className="absolute inset-x-0 top-0 z-[60] hidden h-[var(--header-bar-height)] lg:block">
-            <div className="relative mx-auto h-full w-full max-w-[120rem]">
-              <div className="header-brand-scale absolute left-[clamp(4.5rem,5.63vw,6.75rem)] top-1/2">
-                <Brand onDark={brandOnDark} />
-              </div>
-
-              <div className="absolute right-[clamp(4rem,5.05vw,6.0625rem)] top-1/2 z-[60] flex -translate-y-1/2 items-center gap-6">
-                <div className="header-controls-scale">
-                  <DesktopNavigation onDark={brandOnDark} />
-                </div>
-
-                <Button
-                  type="button"
-                  variant="secondary"
-                  size="lg"
-                  aria-haspopup="dialog"
-                  aria-expanded={projectOpen}
-                  aria-controls="project-request-dialog"
-                  onClick={openProjectRequest}
-                  className="home-heading-cta home-heading-cta--header pointer-events-auto shrink-0 px-8 text-[18px] font-[350]"
-                >
-                  <span className="home-heading-cta__label">
-                    {site.cta.label}
-                  </span>
-                </Button>
-              </div>
-            </div>
+        <div className="header-bar">
+          <div className="header-desktop-brand hidden lg:block">
+            <Brand onDark={brandOnDark && !scrolled} />
           </div>
 
-          <div className="absolute left-6 top-[calc(var(--header-bar-height)/2)] -translate-y-1/2 sm:left-8 lg:hidden">
-            <Brand onDark={brandOnDark} />
+          <div className="header-center-nav hidden lg:block">
+            <DesktopNavigation onDark={brandOnDark && !scrolled} />
           </div>
 
-          <div className="absolute right-10 top-[calc(var(--header-bar-height)/2)] z-[60] -translate-y-1/2 lg:hidden">
+          <div className="header-desktop-cta hidden lg:block">
+            <Button
+              type="button"
+              variant="secondary"
+              size="lg"
+              aria-haspopup="dialog"
+              aria-expanded={projectOpen}
+              aria-controls="project-request-dialog"
+              onClick={openProjectRequest}
+              className="home-heading-cta home-heading-cta--header pointer-events-auto shrink-0 px-8 text-[18px] font-[350]"
+            >
+              <span className="home-heading-cta__label">{site.cta.label}</span>
+            </Button>
+          </div>
+
+          <div className="header-mobile-brand lg:hidden">
+            <Brand onDark={brandOnDark && !scrolled} />
+          </div>
+
+          <div className="header-mobile-actions lg:hidden">
             <MenuControls
               open={open}
               projectOpen={projectOpen}
@@ -422,7 +422,7 @@ export function Header() {
             id="site-menu"
             open={open}
             onNavigate={close}
-            className="absolute right-6 top-1 z-50 h-[360px] w-[calc(100vw-3rem)] max-w-[280px] lg:hidden"
+            className="absolute right-0 top-[calc(100%+8px)] z-50 h-[300px] w-[calc(100vw-3rem)] max-w-[280px] lg:hidden"
           />
         </div>
       </header>

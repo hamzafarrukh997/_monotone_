@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
-import { HeroFluidCanvas } from "@/components/sections/HeroFluidCanvas";
+import { HeroMotion } from "@/components/sections/HeroMotion";
 import { home } from "@/content/home";
 
 const clientLogos = [
@@ -50,135 +50,64 @@ const clientLogos = [
   },
 ] as const;
 
-function HeadlineToggle({ className = "" }: { className?: string }) {
-  return (
-    <span aria-hidden="true" className={`absolute h-[59px] w-[150px] ${className}`}>
-      <span className="absolute inset-y-0 left-0 w-[85px] rounded-pill bg-toggle-a" />
-      <span className="absolute inset-y-0 right-0 w-[85px] rounded-pill bg-toggle-b" />
-    </span>
-  );
-}
-
-function HeroCtaContent({ label }: { label: string }) {
-  return <span className="hero-cta__label">{label}</span>;
-}
-
-function DesktopHero() {
+function HeroComposition() {
   const { hero } = home;
 
   return (
-    <div className="design-canvas-1920 absolute bottom-0 left-1/2 hidden h-[764px] w-[1386px] origin-bottom lg:block">
-      <div
-        aria-hidden="true"
-        className="hero-fluid__watermark pointer-events-none absolute left-1/2 top-[216px] -translate-x-1/2 select-none whitespace-nowrap text-center font-sans text-[380px] font-bold leading-[0.85] tracking-[-22.8px] text-watermark"
-      >
-        {hero.watermark.map((line) => (
-          <span key={line} className="block whitespace-nowrap">
-            {line}
-          </span>
-        ))}
-      </div>
-
-      <div className="absolute inset-0 translate-x-[293px] -translate-y-[130px]">
-        <h1 className="font-display text-[79.888px] font-normal leading-normal tracking-[-4.793px] text-fg">
-          <span className="absolute left-[302.5px] top-[390px] -translate-x-1/2 whitespace-nowrap">
-            {hero.headline.before}
-          </span>
-          <span className="absolute left-[294px] top-[464px] -translate-x-1/2 whitespace-nowrap">
-            obsessively
-          </span>
-          <span className="absolute left-[616.5px] top-[464px] -translate-x-1/2 whitespace-nowrap">
-            good
-          </span>
-          <span className="absolute left-[553.5px] top-[542px] -translate-x-1/2 whitespace-nowrap">
-            websites
-          </span>
-        </h1>
-
-        <HeadlineToggle className="left-[494px] top-[415px]" />
-
-        <p className="absolute left-[98px] top-[575px] w-[267px] text-right font-sans text-[14px] leading-normal text-fg">
-          {hero.subcopy}
-        </p>
-
-      </div>
-
-      <div className="absolute left-1/2 top-[516px] flex -translate-x-1/2 items-center gap-[13px]">
-        <Button
-          href={hero.primaryCta.href}
-          size="sm"
-          className="hero-cta hero-cta--primary h-[38px] whitespace-nowrap px-7 text-[15.5px] font-light leading-none uppercase tracking-[-0.1px]"
-        >
-          <HeroCtaContent label={hero.primaryCta.label} />
-        </Button>
-        <Button
-          href={hero.secondaryCta.href}
-          variant="secondary"
-          size="sm"
-          className="hero-cta hero-cta--secondary h-[38px] whitespace-nowrap px-7 text-[15.5px] font-light leading-none uppercase tracking-[-0.1px]"
-        >
-          <HeroCtaContent label={hero.secondaryCta.label} />
-        </Button>
-      </div>
-    </div>
-  );
-}
-
-function MobileHero() {
-  const { hero } = home;
-
-  return (
-    <div className="relative flex h-full flex-col justify-end overflow-hidden px-6 pb-24 pt-28 sm:px-8 sm:pb-28 lg:hidden">
-      <div
-        aria-hidden="true"
-        className="hero-fluid__watermark pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap text-center font-sans text-[30vw] font-bold leading-none tracking-[-0.06em] text-watermark"
-      >
-        {hero.watermark.map((line) => (
-          <span key={line} className="block whitespace-nowrap">
-            {line}
-          </span>
-        ))}
-      </div>
-
-      <div className="relative z-10">
-        <h1 className="max-w-[9.5ch] font-display text-[clamp(2.75rem,13vw,4.75rem)] font-normal leading-[0.94] tracking-[-0.06em] text-fg">
-          <span className="block">{hero.headline.before}</span>
-          <span className="block">obsessively good</span>
-          <span className="block">websites</span>
-        </h1>
-
-        <div aria-hidden="true" className="relative mt-4 h-10 w-[102px]">
-          <span className="absolute inset-y-0 left-0 w-[61px] rounded-pill bg-toggle-a" />
-          <span className="absolute inset-y-0 right-0 w-[61px] rounded-pill bg-toggle-b" />
+    <div className="hero-stage">
+      <div className="hero-composition">
+        <div className="hero-eyebrow hero-enter">
+          <span className="hero-eyebrow__dot" aria-hidden="true" />
+          <span>{hero.eyebrow}</span>
+          <span className="hero-eyebrow__rule" aria-hidden="true" />
         </div>
 
-        <p className="mt-6 max-w-[18rem] font-sans text-sm leading-5 text-fg/85">
-          {hero.subcopy}
-        </p>
+        <div className="hero-type-layout">
+          <h1 className="hero-heading" aria-label={`${hero.headline.before} ${hero.headline.after}`}>
+            <span className="hero-heading__line hero-heading__line--first" aria-hidden="true">
+              <span className="hero-heading__reveal">{hero.headline.before}</span>
+              <span className="hero-mark">
+                <span className="hero-mark__orbit">
+                  <span className="hero-mark__disc hero-mark__disc--back" />
+                  <span className="hero-mark__disc hero-mark__disc--front">
+                    <svg viewBox="0 0 40 40" fill="none">
+                      <path d="M20 7v26M7 20h26M11 11l18 18M11 29l18-18" />
+                    </svg>
+                  </span>
+                </span>
+              </span>
+            </span>
+            <span className="hero-heading__line hero-heading__line--second" aria-hidden="true">
+              <span className="hero-heading__reveal">obsessively good</span>
+            </span>
+            <span className="hero-heading__line hero-heading__line--third" aria-hidden="true">
+              <span className="hero-heading__reveal">websites<span className="hero-heading__period">.</span></span>
+            </span>
+          </h1>
+          <p className="hero-subcopy hero-enter">{hero.subcopy}</p>
+        </div>
 
-        <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-          <Button
-            href={hero.primaryCta.href}
-            className="hero-cta hero-cta--primary h-11 px-7 text-xs font-light uppercase"
-          >
-            <HeroCtaContent label={hero.primaryCta.label} />
+        <div className="hero-actions hero-enter">
+          <Button href={hero.primaryCta.href} className="hero-cta hero-cta--primary">
+            <span className="hero-cta__label">{hero.primaryCta.label}</span>
+            <span className="hero-action-arrow" aria-hidden="true">↗</span>
           </Button>
-          <Button
-            href={hero.secondaryCta.href}
-            variant="secondary"
-            className="hero-cta hero-cta--secondary h-11 px-7 text-xs font-light uppercase"
-          >
-            <HeroCtaContent label={hero.secondaryCta.label} />
+          <Button href={hero.secondaryCta.href} variant="secondary" className="hero-cta hero-cta--secondary">
+            <span className="hero-cta__label">{hero.secondaryCta.label}</span>
           </Button>
         </div>
       </div>
+      <a className="hero-scroll" href="#work-showcase-heading">
+        <span>{hero.exploreLabel}</span>
+        <span className="hero-scroll__track" aria-hidden="true"><span>↓</span></span>
+      </a>
     </div>
   );
 }
 
 function ClientLogoRail() {
   return (
-    <div className="absolute inset-x-0 bottom-4 z-[4] px-4 sm:bottom-5 sm:px-6 lg:bottom-6">
+    <div className="hero-clients absolute inset-x-0 bottom-4 z-[4] px-4 sm:bottom-5 sm:px-6 lg:bottom-6">
       <div className="mx-auto flex h-16 max-w-5xl overflow-hidden rounded-full border border-[#2B2B2B]/12 bg-white/78 backdrop-blur-lg">
         <div className="hidden h-full w-36 shrink-0 items-center gap-2.5 border-r border-[#2B2B2B]/10 px-5 lg:flex">
           <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
@@ -214,14 +143,12 @@ export function Hero() {
     <Section
       bleed
       aria-label="Introduction"
-      className="home-hero relative isolate -mt-24 h-[100svh] overflow-hidden bg-hero-bg text-fg min-[2000px]:h-[1080px]"
+      className="home-hero relative isolate -mt-24 overflow-hidden bg-hero-bg text-fg"
     >
-      <div className="relative z-[2] h-full">
-        <DesktopHero />
-        <MobileHero />
-      </div>
-      <ClientLogoRail />
-      <HeroFluidCanvas />
+      <HeroMotion>
+        <HeroComposition />
+        <ClientLogoRail />
+      </HeroMotion>
     </Section>
   );
 }

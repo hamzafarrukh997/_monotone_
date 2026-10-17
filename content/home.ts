@@ -8,6 +8,10 @@ import { offers as offerPackages } from "@/content/offers";
 
 export const home = {
   hero: {
+    eyebrow: "Design. Development. Growth.",
+    exploreLabel: "Scroll to explore",
+    pauseMotionLabel: "Pause motion",
+    resumeMotionLabel: "Resume motion",
     /**
      * Headline split around the decorative inline toggle graphic.
      * Accessible name is `${before} ${after}` — the toggle is aria-hidden.
