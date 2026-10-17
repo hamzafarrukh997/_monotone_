@@ -143,7 +143,7 @@ export function Hero() {
     <Section
       bleed
       aria-label="Introduction"
-      className="home-hero relative isolate -mt-24 overflow-hidden bg-hero-bg text-fg"
+      className="home-hero relative isolate -mt-24 h-[100svh] overflow-hidden bg-hero-bg text-fg"
     >
       <HeroMotion>
         <HeroComposition />
